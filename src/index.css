@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300..1000&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Courier New', monospace;
+  background-color: #212121;
+}
+
+/* @layer base {
+    h1 {
+       @apply text-5xl text-cyan-100 font-bold underline  
+    }
+
+} */
+
+@layer components {
+  .inputLogin {
+    @apply hover:placeholder:text-white bg-[#414141] pl-4 py-3 rounded-md mb-3 text-sm
+  }
+  .group {
+    @apply flex gap-x-8 items-center 
+  }
+  .hoverInput {
+    @apply hover:placeholder:text-white bg-[#414141] text-center px-2 py-1 text-base rounded-[5px]
+  }
+}
+
+/* @layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .debug {
+    outline: 2px dashed red;
+  }
+}  */
