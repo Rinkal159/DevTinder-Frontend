@@ -4,6 +4,7 @@ import axios from "axios";
 import { addUser } from "./features/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
   const [firstName, setFname] = useState("");
@@ -21,10 +22,6 @@ export default function Signup() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  function goToLogin() {
-    return navigate("/login");
-  }
 
   async function handleClick(e) {
     e.preventDefault();
@@ -128,7 +125,7 @@ export default function Signup() {
                   value={state}
                   onChange={(e) => setState(e.target.value)}
                 >
-                  <option value="" disabled selected>
+                  <option value="" disabled >
                     Choose state
                   </option>
                   <option value="assam">Assam</option>
@@ -222,13 +219,11 @@ export default function Signup() {
               </div>
               <p className="text-center pb-4">
                 Or Already have an Account?{" "}
-                <a
+                <Link to={"/login"}
                   className="text-blue-400 hover:underline"
-                  onClick={goToLogin}
-                  href=""
                 >
                   LogIn
-                </a>
+                </Link>
               </p>
             </div>
             <div> </div>
@@ -237,18 +232,15 @@ export default function Signup() {
       </div>
 
       {err.length > 0 && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-          <div className=" shadow-lg relative">
-            <button
-              className="absolute top-0 text-red-600 right-0  text-xl font-bold hover:text-black"
-              onClick={() => setErr([])}
-            >
+        <div className="outer-error">
+          <div className="inner-error">
+            <button className="close-btn" onClick={() => setErr([])}>
               <i class="fa-solid fa-xmark"></i>
             </button>
-            <h2 className="text-lg font-semibold mb-4 text-red-600">Error</h2>
-            <ul className="list-decimal list-inside space-y-1">
+            <h2 className="err-heading">Error</h2>
+            <ul className="list-of-errors">
               {err.map((li, i) => (
-                <li key={i}>{li}</li>
+                <li className="errors" key={i}>{li}</li>
               ))}
             </ul>
           </div>
