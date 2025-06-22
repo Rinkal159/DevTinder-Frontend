@@ -9,7 +9,7 @@ import Settings from "./Settings.jsx";
 import "./index.css";
 import { Provider } from "react-redux";
 import { store } from "./app/store.js";
-
+ 
 export default function App() {
   return (
     <div>
