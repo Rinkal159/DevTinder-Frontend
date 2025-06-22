@@ -17,15 +17,65 @@ body {
 } */
 
 @layer components {
-  .inputLogin {
+
+  /** login input */
+  .inputLogin { 
     @apply hover:placeholder:text-white bg-[#414141] pl-4 py-3 rounded-md mb-3 text-sm
   }
+
+  /** signup group */
   .group {
     @apply flex gap-x-8 items-center 
   }
+
+  /** signup input */
   .hoverInput {
     @apply hover:placeholder:text-white bg-[#414141] text-center px-2 py-1 text-base rounded-[5px]
   }
+
+  /** error */
+  .outer-error {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm 
+  }
+  .inner-error {
+    @apply shadow-lg relative p-4 rounded-lg
+  }
+  .close-btn {
+    @apply absolute top-0 text-red-500 right-4 top-4  text-xl font-bold hover:text-black
+  }
+  .err-heading {
+    @apply text-lg font-semibold mb-4 text-red-500 underline
+  }
+  .list-of-errors {
+    @apply list-decimal list-inside space-y-1
+  }
+  .errors {
+    @apply font-medium text-[1.1rem]
+  }
+
+  /** logout */
+  .outer-logout {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70
+  }
+  .inner-logout {
+    @apply shadow-lg relative p-4 rounded-lg bg-white
+  }
+  .logout-func {
+    @apply flex flex-col gap-y-8
+  }
+  .outer-btns {
+    @apply flex justify-end
+  }
+  .btns {
+    @apply flex gap-x-4
+  }
+  .btn {
+    @apply p-4
+  }
+  .logout-btn {
+    @apply bg-red-800 hover:bg-red-900
+  }
+
 }
 
 /* @layer utilities {
