@@ -5,16 +5,26 @@ export default function Index() {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
 
-  function handleNavigate() {
+  function handleInit() {
     return navigate("/signup");
+  }
+  function handleFeed() {
+    return navigate("/feed");
   }
 
   return (
-    <div className="flex flex-col gap-y-8 justify-center items-center h-screen flex-grow">
+    <div className="flex h-[calc(100vh-70px)] flex-col gap-y-8 justify-center items-center">
       <h1 className="text-7xl font-black">Find Your REDADME of Life.</h1>
-      {!user && (
+      {user ? (
         <button
-          onClick={handleNavigate}
+          onClick={handleFeed}
+          className="btn btn-neutral btn-outline rounded-full text-2xl px-7 py-7"
+        >
+          Feed()
+        </button>
+      ) : (
+        <button
+          onClick={handleInit}
           className="btn btn-neutral btn-outline rounded-full text-2xl px-7 py-7"
         >
           Init()
