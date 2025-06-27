@@ -8,7 +8,6 @@ import { useEffect } from "react";
 
 export default function Body() {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
   const userData = useSelector((state) => state.user);
 
   async function getUser() {
@@ -16,9 +15,7 @@ export default function Body() {
       const user = await axios.get("http://localhost:3002/profile/view", {
         withCredentials: true,
       });
-
       dispatch(addUser(user.data));
-      
     } catch (err) {
       console.log(err.message);
     }
@@ -31,11 +28,11 @@ export default function Body() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col ">
+    <div className="min-h-screen flex flex-col">
       <NavBar />
-      <main className="flex-grow flex flex-col">
-        <Outlet />
-      </main>
+      <div className="flex-grow">
+      <Outlet />
+      </div>
       <Footer />
     </div>
   );
