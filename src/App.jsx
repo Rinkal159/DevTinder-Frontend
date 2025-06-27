@@ -6,6 +6,7 @@ import Index from "./index.jsx";
 import Dashboard from "./dashboard.jsx";
 import Profile from "./Profile.jsx";
 import Settings from "./Settings.jsx";
+import Feed from "./Feed.jsx";
 import "./index.css";
 import { Provider } from "react-redux";
 import { store } from "./app/store.js";
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile/>}/>
             <Route path="/settings" element={<Settings/>}/>
+            <Route path="/feed" element={<Feed/>}/>
           </Route>
         </Routes>
       </Provider>
