@@ -9,46 +9,57 @@ body {
   background-color: #212121;
 }
 
-/* @layer base {
-    h1 {
-       @apply text-5xl text-cyan-100 font-bold underline  
-    }
-
-} */
 
 @layer components {
 
+  /** Navbar */
+  .navbar {
+    @apply h-[70px] shadow-sm z-10 text-white bg-black
+  }
+  .color {
+    @apply bg-gradient-to-b from-red-300 to-white dark:bg-gradient-to-b from-black to-gray-100
+  }
+
   /** login input */
-  .inputLogin { 
+  .inputLogin {
     @apply hover:placeholder:text-white bg-[#414141] pl-4 py-3 rounded-md mb-3 text-sm
   }
 
   /** signup group */
   .group {
-    @apply flex gap-x-8 items-center 
+    @apply flex gap-x-8 items-center justify-center
   }
 
   /** signup input */
   .hoverInput {
-    @apply hover:placeholder:text-white bg-[#414141] text-center px-2 py-1 text-base rounded-[5px]
+    @apply hover:placeholder:text-white bg-[#414141] text-center px-2 py-[0.4rem] text-base rounded-[5px] border border-[#444] bg-[#111] hover:border-[#555] mb-1
+  }
+
+  .margin {
+    @apply mb-1
   }
 
   /** error */
   .outer-error {
-    @apply fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm 
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm
   }
+
   .inner-error {
     @apply shadow-lg relative p-4 rounded-lg
   }
+
   .close-btn {
-    @apply absolute top-0 text-red-500 right-4 top-4  text-xl font-bold hover:text-black
+    @apply absolute top-0 text-red-500 right-4 top-4 text-xl font-bold hover:text-black
   }
+
   .err-heading {
     @apply text-lg font-semibold mb-4 text-red-500 underline
   }
+
   .list-of-errors {
     @apply list-decimal list-inside space-y-1
   }
+
   .errors {
     @apply font-medium text-[1.1rem]
   }
@@ -57,26 +68,68 @@ body {
   .outer-logout {
     @apply fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70
   }
+
   .inner-logout {
     @apply shadow-lg relative p-4 rounded-lg bg-white
   }
+
   .logout-func {
     @apply flex flex-col gap-y-8
   }
+
   .outer-btns {
     @apply flex justify-end
   }
+
   .btns {
     @apply flex gap-x-4
   }
+
   .btn {
     @apply p-4
   }
+
   .logout-btn {
     @apply bg-red-800 hover:bg-red-900
   }
 
+  /** Feed */
+  .h1 {
+    @apply text-white text-base px-4 
+  }
+
+  .buttons {
+    @apply flex gap-x-4 my-4
+  }
+
+  .ignore-btn {
+    @apply border-red-500 text-red-500 hover:bg-red-800 hover:text-white hover:border-white
+  }
+
+  .interested-btn {
+    @apply border-green-500 bg-black text-green-300 hover:bg-green-700 hover:text-white hover:border-white
+  }
+
+
+  /** Requests */
+  .cols {
+    @apply text-white cursor-pointer mb-8 text-lg hover:font-semibold 
+  }
+  .center-the-heading {
+    @apply flex flex-col items-center pt-4
+  }
+
+
 }
+
+
+/* @layer base {
+    h1 {
+       @apply text-5xl text-cyan-100 font-bold underline  
+    }
+
+} */
+
 
 /* @layer utilities {
   .text-shadow {
