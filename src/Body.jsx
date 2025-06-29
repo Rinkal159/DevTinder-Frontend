@@ -1,24 +1,22 @@
 import Footer from "./Footer";
 import NavBar from "./Navbar";
-import { Outlet, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "./features/user/userSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import getMyUser from "./API_Calling/getMyUser";
 
 export default function Body() {
+  const [err, setErr] = useState([]);
+
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.user);
 
+
+  // get the user
   async function getUser() {
-    try {
-      const user = await axios.get("http://localhost:3002/profile/view", {
-        withCredentials: true,
-      });
-      dispatch(addUser(user.data));
-    } catch (err) {
-      console.log(err.message);
-    }
+    await getMyUser(dispatch, setErr);
+
   }
 
   useEffect(() => {
@@ -28,12 +26,34 @@ export default function Body() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <NavBar />
-      <div className="flex-grow">
-      <Outlet />
+    <div>
+      <div className="min-h-screen flex flex-col">
+        <NavBar />
+        <div className="flex-grow">
+          <Outlet />
+        </div>
+        <Footer />
       </div>
-      <Footer />
+
+
+      {/* error */}
+      {err.length > 0 && (
+        <div className="outer-error">
+          <div className="inner-error">
+            <button className="close-btn" onClick={() => setErr([])}>
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 className="err-heading">Error</h2>
+            <ul>
+              {err.map((li, i) => (
+                <li className="errors" key={i}>
+                  {li}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
