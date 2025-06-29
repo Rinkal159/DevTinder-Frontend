@@ -33,8 +33,6 @@ export default function Login() {
       alert("User logged in successfully!");
       dispatch(addUser(res.data.data));
 
-      console.log(res.data.data);
-
       return navigate("/feed");
     } catch (err) {
       const errors = err.response?.data?.message || err.message;

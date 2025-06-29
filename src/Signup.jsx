@@ -65,7 +65,6 @@ export default function Signup() {
         setImgPreview("");
 
         dispatch(addUser(newUser.data.data));
-        console.log(newUser.data.data);
         alert("signed up successfully!");
 
         return navigate("/feed");
@@ -193,12 +192,6 @@ export default function Signup() {
     const stackOpti = selected.map((s) => s.value);
     setTechInput(selected);
     setTechStacks(stackOpti);
-  }
-
-  {
-    console.log(techStacks);
-    console.log(goals);
-    console.log(state);
   }
 
   return (
