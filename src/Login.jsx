@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./index.css";
-import axios from "axios";
 import { useDispatch } from "react-redux";
-import { addUser } from "./features/user/userSlice";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+
+import login from "./API_Calling/login";
 
 export default function Login() {
   const [email, setEmail] = useState("rinkal@gmail.com");
@@ -14,31 +14,11 @@ export default function Login() {
   const [err, setErr] = useState([]);
 
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
+  // login
   async function handleClick() {
-    try {
-      const res = await axios.post(
-        "http://localhost:3002/login",
-        {
-          email,
-          passWord,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-
-      alert("User logged in successfully!");
-      dispatch(addUser(res.data.data));
-
-      return navigate("/feed");
-    } catch (err) {
-      const errors = err.response?.data?.message || err.message;
-
-      setErr((prevErr) => [...prevErr, errors]);
-    }
+    await login(email, passWord, dispatch, navigate, setErr);
   }
 
   return (
@@ -67,12 +47,9 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <a
-            href="#"
-            className="hover:underline text-center text-[#0466c8] pt-2 pb-3"
-          >
+          <Link className="hover:underline text-center text-[#0466c8] pt-2 pb-3">
             Forgot password?
-          </a>
+          </Link>
 
           <button
             onClick={handleClick}
@@ -83,6 +60,7 @@ export default function Login() {
         </div>
       </div>
 
+      {/* Error */}
       {err.length > 0 && (
         <div className="outer-error">
           <div className="inner-error">
