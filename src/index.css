@@ -103,20 +103,33 @@ body {
   }
 
   .ignore-btn {
-    @apply border-red-500 text-red-500 hover:bg-red-800 hover:text-white hover:border-white
+    @apply  hover:bg-red-800 hover:text-white hover:border-white
   }
 
   .interested-btn {
-    @apply border-green-500 bg-black text-green-300 hover:bg-green-700 hover:text-white hover:border-white
+    @apply  hover:bg-green-700 hover:text-white hover:border-white
   }
 
 
   /** Requests */
   .cols {
-    @apply text-white cursor-pointer mb-8 text-lg hover:font-semibold 
+    @apply text-white cursor-pointer mb-4 text-lg hover:font-semibold 
   }
   .center-the-heading {
     @apply flex flex-col items-center pt-4
+  }
+  .req-container {
+    @apply flex flex-col gap-y-4 text-green-500 
+  }
+  .req {
+    @apply hover:font-semibold hover:underline hover:cursor-pointer text-white
+  }
+
+  .ignored-pull {
+    @apply btn btn-outline text-base bg-red-800 hover:bg-red-900 hover:text-white hover:border-white
+  }
+  .interested-pull {
+    @apply btn btn-outline text-base text-green-300 bg-green-800 border-white hover:bg-green-900 hover:text-white hover:border-white
   }
 
 
