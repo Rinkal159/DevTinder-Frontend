@@ -1,62 +1,26 @@
 import { useState } from "react";
-import { addUser, logoutUser } from "./features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import Logout from "./Logout";
 import "./index.css";
-import { addFeed } from "./features/feed/feedSlice";
 
-function Logout({ cancel, logout }) {
-  return (
-    <div className="outer-logout">
-      <div className="inner-logout">
-        <h1 className="pb-3  text-lg font-semibold">Logout</h1>
-        <div className="logout-func">
-          <p>Are you sure you want to Logout?</p>
-          <div className="outer-btns">
-            <div className="btns">
-              <button className="btn" onClick={cancel}>
-                Cancel
-              </button>
-              <button className="btn logout-btn" onClick={logout}>
-                Logout
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+import myLogout from "./API_Calling/myLogout";
 
 export default function NavBar() {
   const state = useSelector((state) => state.user);
+
+  const [err, setErr] = useState([]);
+  const [logout, setLogout] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [logout, setLogout] = useState(false);
 
+  // logout
   async function handleLogout() {
-    try {
-      await axios.post(
-        "http://localhost:3002/logout",
-        {},
-        {
-          withCredentials: true,
-        }
-      );
-      dispatch(addUser(null));
-      dispatch(addFeed(null))
-      setLogout(false);
+    await myLogout(setLogout, dispatch, navigate, setErr);
 
-      alert("User Logged out Successfully!");
-
-      return navigate("/index");
-    } catch (err) {
-      console.log(err.message);
-      
-    }
   }
 
   function goToLogin() {
@@ -79,10 +43,10 @@ export default function NavBar() {
             <div className="dropdown dropdown-end mx-4">
               <div tabIndex={0} role="button" className="w-14">
                 <img
-                    src={state.img}
-                    alt={`${state.firstName} ${state.lastName}`}
-                    className="rounded-full"
-                  />
+                  src={state.img}
+                  alt={`${state.firstName} ${state.lastName}`}
+                  className="rounded-full"
+                />
               </div>
 
               {!logout && (
@@ -126,6 +90,25 @@ export default function NavBar() {
           />
         )}
       </div>
+      
+      {/* Error */}
+      {err.length > 0 && (
+        <div className="outer-error">
+          <div className="inner-error">
+            <button className="close-btn" onClick={() => setErr([])}>
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 className="err-heading">Error</h2>
+            <ul>
+              {err.map((li, i) => (
+                <li className="errors" key={i}>
+                  {li}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
