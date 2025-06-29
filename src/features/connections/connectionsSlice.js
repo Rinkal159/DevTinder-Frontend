@@ -16,9 +16,12 @@ export const connectionsSlice = createSlice({
             if (!existedConnections) {
                 state.bunch.push(action.payload)
             }
+        },
+        setConnectionsEmpty : (state, action) => {
+            state.bunch = action.payload;
         }
     }
 });
 
-export const {addConnections} = connectionsSlice.actions;
+export const {addConnections, setConnectionsEmpty} = connectionsSlice.actions;
 export default connectionsSlice.reducer;
