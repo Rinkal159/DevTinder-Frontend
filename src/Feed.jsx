@@ -1,62 +1,76 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addFeed } from "./features/feed/feedSlice";
 import ShowFeed from "./ShowFeed";
 import Requests from "./Requests";
+import "./index.css";
+
+import sendInterestedOrIgnoreReq from "./API_Calling/sendInterestedOrIgnoreReq";
+import getMyFeed from "./API_Calling/getFeed";
+import getMySentReq from "./API_Calling/getMySentReq";
+import getMyReceivedReq from "./API_Calling/getMyReceivedReq";
+import getMyConnections from "./API_Calling/getMyConnections";
 
 export default function Feed() {
   const feedUsers = useSelector((state) => state.feed);
 
   const [load, setLoad] = useState(true);
   const [err, setErr] = useState([]);
-  const [currIdx, setCurrIdx] = useState(0);
 
   const dispatch = useDispatch();
 
+  // send request when hitting interested or ignore button
+  async function sendReq(status) {
+    await sendInterestedOrIgnoreReq(status, feedUsers[0]._id, dispatch, setErr);
+  }
+
+  // get the feed
   async function getFeed() {
-      try {
-        setLoad(true);
+    await getMyFeed(dispatch, setLoad, setErr);
 
-        const res = await axios.get("http://localhost:3002/user/feed", {
-          withCredentials: true,
-        });
+  }
 
-        dispatch(addFeed(res.data.data));
-      } catch (err) {
-        const error = err.response?.data?.message || err.message;
-        setErr((prevErr) => [...prevErr, error]);
-      } finally {
-        setLoad(false);
-      }
-    }
+  // get all the sent requests
+  async function getSentReq() {
+     await getMySentReq(dispatch, setErr);
+
+  }
+
+  //get all the received reqeuests
+  async function getReceivedReq() {
+    await getMyReceivedReq(dispatch, setErr);
+
+  }
+
+  async function getConnections() {
+    await getMyConnections(dispatch, setErr);
+
+  }
 
   useEffect(() => {
-    if (feedUsers) {
+    if (feedUsers && feedUsers.length > 0) {
       setLoad(false);
       return;
     }
-    
+
     getFeed();
+
+    getSentReq();
+
+    getReceivedReq();
+
+    getConnections();
   }, []);
 
-  
-
-  function handleNext() {
-    setCurrIdx((prevIdx) =>
-      prevIdx < feedUsers.length ? prevIdx + 1 : prevIdx
-    );
-  }
-
   return (
-    <div className=" pb-4 grid grid-cols-[_1fr_1.7fr] bg-white h-screen">
-      <Requests/>
+    <div className=" pb-4 grid grid-cols-[_1fr_1.7fr] bg-white ">
+      <Requests />
       <ShowFeed
-        currIdx={currIdx}
         feedUsers={feedUsers}
-        handleNext={handleNext}
+        sendIgnoreReq={sendReq}
+        sendInterestedReq={sendReq}
         load={load}
+        ignore={"Ignore"}
+        interested={"Interested"}
       />
 
       {/* error */}
