@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Quicksand:wght@300..700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Courier New', monospace;
-  background-color: #212121;
+@layer base {
+  body {
+    @apply font-[Quicksand]
+  }
 }
-
 
 @layer components {
 
@@ -18,6 +18,9 @@ body {
   }
   .color {
     @apply bg-gradient-to-b from-red-300 to-white dark:bg-gradient-to-b from-black to-gray-100
+  }
+  .menu-hover {
+    @apply hover:font-semibold border-b border-white py-2 cursor-pointer
   }
 
   /** login input */
@@ -49,7 +52,7 @@ body {
   }
 
   .close-btn {
-    @apply absolute top-0 text-red-500 right-4 top-4 text-xl font-bold hover:text-black
+    @apply absolute text-red-500 right-4 top-4 text-xl font-bold hover:text-black
   }
 
   .err-heading {
@@ -61,7 +64,7 @@ body {
   }
 
   .errors {
-    @apply font-medium text-[1.1rem]
+    @apply font-medium text-[1.1rem] pb-4
   }
 
   /** logout */
@@ -116,7 +119,7 @@ body {
     @apply text-white cursor-pointer mb-4 text-lg hover:font-semibold 
   }
   .center-the-heading {
-    @apply flex flex-col items-center pt-4
+    @apply flex flex-col items-center pt-4 gap-4
   }
   .req-container {
     @apply flex flex-col gap-y-4 text-green-500 
@@ -131,25 +134,38 @@ body {
   .interested-pull {
     @apply btn btn-outline text-base text-green-300 bg-green-800 border-white hover:bg-green-900 hover:text-white hover:border-white
   }
+  .count-reqs {
+    @apply border rounded-full px-4 py-2 text-center font-semibold
+  }
+
+  /** img */
+  .img {
+    @apply h-24 w-24 rounded-full object-cover
+  }
+
+  /** update password */
+  .form {
+    @apply flex flex-col gap-y-8 items-start w-1/3 mx-auto mt-4
+  }
+  .separators {
+    @apply w-full flex flex-col gap-y-2
+  }
+  .passwordInput {
+    @apply w-full bg-transparent border-b py-1 px-2
+  }
+
+  /** navbar pages headings */
+  .navbar-headings {
+    @apply text-center text-2xl font-semibold self-center
+  }
+
+  /** settings */
+  .heading {
+    @apply text-lg font-semibold py-4 hover:cursor-pointer
+  }
+  .individual-heading {
+    @apply pb-4 hover:cursor-pointer hover:font-semibold
+  }
 
 
 }
-
-
-/* @layer base {
-    h1 {
-       @apply text-5xl text-cyan-100 font-bold underline  
-    }
-
-} */
-
-
-/* @layer utilities {
-  .text-shadow {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-
-  .debug {
-    outline: 2px dashed red;
-  }
-}  */
