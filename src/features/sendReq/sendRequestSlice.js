@@ -33,9 +33,13 @@ export const sendReqSlice = createSlice({
         addSendReqProfile: (state, action) => {
             state.individual = action.payload;
         },
+
+        removeSentReq : (state, action) => {
+            state.bunch = state.bunch.filter((state) => state._id !== action.payload)
+        }
     }
 })
 
-export const { addSendReq, setSendReqStateEmpty, addSendReqProfile } = sendReqSlice.actions;
+export const { addSendReq, setSendReqStateEmpty, addSendReqProfile, removeSentReq } = sendReqSlice.actions;
 export default sendReqSlice.reducer;
 
