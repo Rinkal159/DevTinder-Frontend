@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ShowFeed from "./ShowFeed";
 import Requests from "./Requests";
 import "./index.css";
+import Error from "./Error";
 
 import sendInterestedOrIgnoreReq from "./API_Calling/sendInterestedOrIgnoreReq";
 import getMyFeed from "./API_Calling/getFeed";
@@ -26,24 +27,20 @@ export default function Feed() {
   // get the feed
   async function getFeed() {
     await getMyFeed(dispatch, setLoad, setErr);
-
   }
 
   // get all the sent requests
   async function getSentReq() {
-     await getMySentReq(dispatch, setErr);
-
+    await getMySentReq(dispatch, setErr);
   }
 
   //get all the received reqeuests
   async function getReceivedReq() {
     await getMyReceivedReq(dispatch, setErr);
-
   }
 
   async function getConnections() {
     await getMyConnections(dispatch, setErr);
-
   }
 
   useEffect(() => {
@@ -54,15 +51,18 @@ export default function Feed() {
 
     getFeed();
 
-    getSentReq();
-
     getReceivedReq();
+
+    getSentReq();
 
     getConnections();
   }, []);
 
   return (
     <div className=" pb-4 grid grid-cols-[_1fr_1.7fr] bg-white ">
+      {/* Error */}
+      {err.length > 0 && <Error err={err} setErr={setErr} />}
+
       <Requests />
       <ShowFeed
         feedUsers={feedUsers}
@@ -72,25 +72,6 @@ export default function Feed() {
         ignore={"Ignore"}
         interested={"Interested"}
       />
-
-      {/* error */}
-      {err.length > 0 && (
-        <div className="outer-error">
-          <div className="inner-error">
-            <button className="close-btn" onClick={() => setErr([])}>
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-            <h2 className="err-heading">Error</h2>
-            <ul>
-              {err.map((li, i) => (
-                <li className="errors" key={i}>
-                  {li}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
