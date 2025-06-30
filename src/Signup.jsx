@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
+import Error from "./Error";
 
 export default function Signup() {
   const [imgPreview, setImgPreview] = useState("");
@@ -22,7 +23,7 @@ export default function Signup() {
   const [techStacks, setTechStacks] = useState([]);
   const [goals, setGoals] = useState([]);
 
-  // dropdown 
+  // dropdown
   const [stateInput, setStateInput] = useState("");
   const [techInput, setTechInput] = useState([]);
   const [goalInput, setGoalInput] = useState([]);
@@ -196,6 +197,9 @@ export default function Signup() {
 
   return (
     <div>
+      {/* Error */}
+      {err.length > 0 && <Error err={err} setErr={setErr} />}
+
       <div className="flex justify-center items-center">
         <div className="flex flex-col justify-center items-center bg-black w-1/2 p-10 rounded-lg my-8">
           <h2 className="text-white text-2xl pb-8 font-semibold">
@@ -206,10 +210,9 @@ export default function Signup() {
             onSubmit={(e) => {
               handleClick(e);
             }}
-            action="POST"
           >
             {/* image */}
-            <div className="group margin">
+            <div className="group margin ">
               <img
                 src={
                   img
@@ -217,7 +220,7 @@ export default function Signup() {
                     : "https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png"
                 }
                 alt="Profile picture"
-                className="w-24 h-24 object-cover rounded-full"
+                className="h-24 w-24 rounded-full object-cover"
               />
               <input
                 type="file"
@@ -402,6 +405,7 @@ export default function Signup() {
               />
             </div>
 
+            {/* signup or login */}
             <div className="w-full ">
               <div className="flex justify-center pb-4">
                 <button type="submit" className="btn btn-outline">
@@ -419,24 +423,6 @@ export default function Signup() {
           </form>
         </div>
       </div>
-
-      {err.length > 0 && (
-        <div className="outer-error">
-          <div className="inner-error">
-            <button className="close-btn" onClick={() => setErr([])}>
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-            <h2 className="err-heading">Error</h2>
-            <ul className="list-of-errors">
-              {err.map((li, i) => (
-                <li className="errors" key={i}>
-                  {li}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
 import "./index.css";
+import Error from "./Error";
+import DeleteProfile from "./DeleteProfile";
 
 import myLogout from "./API_Calling/myLogout";
 
@@ -16,12 +18,12 @@ export default function NavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
   // logout
   async function handleLogout() {
     await myLogout(setLogout, dispatch, navigate, setErr);
-
+    alert(`User logged out successfully!`)
   }
+  
 
   function goToLogin() {
     return navigate("/login");
@@ -30,6 +32,9 @@ export default function NavBar() {
   return (
     <div>
       <div className="navbar">
+        {/* Error */}
+        {err.length > 0 && <Error err={err} setErr={setErr} />}
+
         <div className="flex-1">
           <Link to={"/index"} className="btn btn-ghost text-2xl">
             <i className="fa-solid fa-code"></i>DevTinder
@@ -50,23 +55,24 @@ export default function NavBar() {
               </div>
 
               {!logout && (
-                <ul
+                <div
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                  className="bg-gray-900 flex flex-col menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 shadow"
                 >
-                  <li className="hover:bg-black">
+                  <h1 className="menu-hover">
                     <Link to={"/profile"} className="justify-between">
                       Profile
-                      <span className="badge">New</span>
                     </Link>
-                  </li>
-                  <li className="hover:bg-black">
+                  </h1>
+                  
+                  <h1 className="menu-hover">
                     <Link to={"/settings"}>Settings</Link>
-                  </li>
-                  <li className="hover:bg-black">
+                  </h1>
+                  
+                  <h1 className="menu-hover border-none">
                     <a onClick={() => setLogout(true)}>Logout</a>
-                  </li>
-                </ul>
+                  </h1>
+                </div>
               )}
             </div>
           </div>
@@ -89,26 +95,8 @@ export default function NavBar() {
             logout={handleLogout}
           />
         )}
+
       </div>
-      
-      {/* Error */}
-      {err.length > 0 && (
-        <div className="outer-error">
-          <div className="inner-error">
-            <button className="close-btn" onClick={() => setErr([])}>
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-            <h2 className="err-heading">Error</h2>
-            <ul>
-              {err.map((li, i) => (
-                <li className="errors" key={i}>
-                  {li}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
