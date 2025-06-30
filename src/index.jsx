@@ -14,7 +14,7 @@ export default function Index() {
 
   return (
     <div className="flex h-[calc(100vh-70px)] flex-col gap-y-8 justify-center items-center">
-      <h1 className="text-7xl font-black">Find Your REDADME of Life.</h1>
+      <h1 className="text-7xl font-black">Find Your README of Life.</h1>
       {user ? (
         <button
           onClick={handleFeed}
