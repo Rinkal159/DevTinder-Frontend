@@ -27,8 +27,6 @@ export default async function myLogout(setLogout, dispatch, navigate, setErr) {
     
           setLogout(false);
     
-          alert("User Logged out Successfully!");
-    
           return navigate("/index");
 
         } catch (err) {
