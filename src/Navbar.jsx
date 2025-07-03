@@ -5,28 +5,24 @@ import { Link } from "react-router-dom";
 import Logout from "./Logout";
 import "./index.css";
 import Error from "./Error";
-import DeleteProfile from "./DeleteProfile";
-
-import myLogout from "./API_Calling/myLogout";
+import { useAuth0 } from "@auth0/auth0-react";
+import dispatchEmoty from "./API_Calling/dispatchEmoty";
 
 export default function NavBar() {
+  const { user, isAuthenticated, logout } = useAuth0();
+
   const state = useSelector((state) => state.user);
 
   const [err, setErr] = useState([]);
-  const [logout, setLogout] = useState(false);
+  const [mylogout, setLogout] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // logout
-  async function handleLogout() {
-    await myLogout(setLogout, dispatch, navigate, setErr);
-    alert(`User logged out successfully!`)
-  }
-  
+  function handleLogout() {
+    dispatchEmoty(dispatch);
 
-  function goToLogin() {
-    return navigate("/login");
+    logout({ logoutParams: { returnTo: "http://localhost:5173/index" } });
   }
 
   return (
@@ -46,15 +42,15 @@ export default function NavBar() {
             {state && <p>Welcome, {state.firstName}</p>}
 
             <div className="dropdown dropdown-end mx-4">
-              <div tabIndex={0} role="button" className="w-14">
+              <div tabIndex={0} role="button" className="">
                 <img
                   src={state.img}
                   alt={`${state.firstName} ${state.lastName}`}
-                  className="rounded-full"
+                  className="rounded-full object-cover w-12 h-12 "
                 />
               </div>
 
-              {!logout && (
+              {!mylogout && (
                 <div
                   tabIndex={0}
                   className="bg-gray-900 flex flex-col menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 shadow"
@@ -64,30 +60,42 @@ export default function NavBar() {
                       Profile
                     </Link>
                   </h1>
-                  
+
                   <h1 className="menu-hover">
                     <Link to={"/settings"}>Settings</Link>
                   </h1>
-                  
-                  <h1 className="menu-hover border-none">
-                    <a onClick={() => setLogout(true)}>Logout</a>
-                  </h1>
+
+                  {isAuthenticated && (
+                    <h1 className="menu-hover border-none">
+                      <a onClick={() => setLogout(true)}>Logout</a>
+                    </h1>
+                  )}
                 </div>
               )}
             </div>
           </div>
         ) : (
-          <div>
-            <button
-              onClick={goToLogin}
-              className="btn btn-neutral rounded-full bg-[#0466c8] hover:bg-[#0054b1] px-5 mr-4"
-            >
-              LOGIN
-            </button>
-          </div>
+          isAuthenticated && (
+            <div className="dropdown dropdown-end flex items-center gap-x-4">
+              <p className="text-lg">Hello {user.nickname}</p>
+              <div tabIndex={0} role="button" className="">
+                <img
+                  src={user.picture}
+                  alt={`${user.nickname}`}
+                  className="rounded-full object-cover w-12 h-12 "
+                />
+                <div
+                  tabIndex={0}
+                  className="bg-blue-800 hover:bg-blue-900 flex flex-col menu menu-sm dropdown-content rounded-box z-1 mt-5 shadow"
+                >
+                  <h1 onClick={handleLogout} className="px-2 py-1 hover:font-semibold">Logout</h1>
+                </div>
+              </div>
+            </div>
+          )
         )}
 
-        {logout && (
+        {mylogout && (
           <Logout
             cancel={() => {
               setLogout(false);
@@ -95,7 +103,6 @@ export default function NavBar() {
             logout={handleLogout}
           />
         )}
-
       </div>
     </div>
   );
