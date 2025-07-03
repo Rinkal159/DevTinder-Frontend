@@ -2,23 +2,25 @@ import axios from "axios";
 import { removeReq } from "../features/receivedReq/receivedReq";
 import { addConnections } from "../features/connections/connectionsSlice";
 
-export default async function acceptOrRejectReq(status, user, dispatch, setErr, navigate) {
+export default async function acceptOrRejectReq(token, status, user, dispatch, setErr, navigate) {
     try {
-
-      console.log("at axios : " + user._id);
       
           const res = await axios.post(
-            `http://localhost:3002/request/review/${status}/${user._id}`,
+            `http://localhost:3002/request/review/${status}/${user}`,
             {},
-            { withCredentials: true }
+            { withCredentials: true,
+              headers : {
+                Authorization : `Bearer ${token}`
+              }
+             },
+            
           );
-
-          alert(`${res.data.data.firstName} : ${status}`)
+          
     
-          dispatch(removeReq(user._id));
+          dispatch(removeReq(user));
 
           if(status==="Accept") {
-            dispatch(addConnections(user))
+            dispatch(addConnections(res.data))
           }
     
           return navigate("/feed");
