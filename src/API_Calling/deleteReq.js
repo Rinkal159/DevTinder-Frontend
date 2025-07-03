@@ -1,20 +1,20 @@
 import axios from "axios";
-import { removeSentReq } from "../features/sendReq/sendRequestSlice";
+import { addSendReqProfile, removeSentReq } from "../features/sendReq/sendRequestSlice";
 
-export default async function deletReq(status, user, dispatch, navigate, setErr) {
+export default async function deletReq(token,status, user, dispatch, navigate, setErr) {
     try {
+        
 
-        console.log(user._id);
-
-        const res = await axios.delete(`http://localhost:3002/request/${status}/${user._id}`,
-            { withCredentials: true }
+        const res = await axios.delete(`http://localhost:3002/request/${status}/${user}`,
+            { withCredentials: true,
+                headers : {
+                Authorization : `Bearer ${token}`
+              }
+             }
         );
 
-        console.log(res);
-
-        alert(`${user.firstName} : ${status}`)
-
-        dispatch(removeSentReq(user._id));
+        dispatch(removeSentReq(user));
+        dispatch(addSendReqProfile(null))
         navigate("/feed")
 
     } catch (err) {
