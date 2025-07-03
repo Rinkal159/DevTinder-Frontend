@@ -15,7 +15,7 @@ export default function Profile() {
   ];
 
   return (
-    <div className="flex flex-col gap-y-6 items-start w-1/2 mx-auto my-4">
+    <div className="flex flex-col gap-y-6 items-start w-1/2 mx-auto mt-4 mb-8">
       <h1 className="navbar-headings">
        Profile
       </h1>
