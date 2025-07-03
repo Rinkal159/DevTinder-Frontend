@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Index() {
-  const user = useSelector((state) => state.user);
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
+
+  const myUser = useSelector((state) => state.user);
   const navigate = useNavigate();
 
-  function handleInit() {
-    return navigate("/signup");
-  }
+  
   function handleFeed() {
     return navigate("/feed");
   }
@@ -15,7 +16,7 @@ export default function Index() {
   return (
     <div className="flex h-[calc(100vh-70px)] flex-col gap-y-8 justify-center items-center">
       <h1 className="text-7xl font-black">Find Your README of Life.</h1>
-      {user ? (
+      {isAuthenticated ? (
         <button
           onClick={handleFeed}
           className="btn btn-neutral btn-outline rounded-full text-2xl px-7 py-7"
@@ -24,7 +25,10 @@ export default function Index() {
         </button>
       ) : (
         <button
-          onClick={handleInit}
+          onClick={() =>
+            loginWithRedirect({
+              authorizationParams: { prompt: "login" }})
+          }
           className="btn btn-neutral btn-outline rounded-full text-2xl px-7 py-7"
         >
           Init()
