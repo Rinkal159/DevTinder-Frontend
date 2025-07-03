@@ -7,8 +7,6 @@ export default async function getMyUser(dispatch, setErr) {
             withCredentials: true,
         });
 
-        alert(`${user.data.firstName}'s data is fetched`);
-
         dispatch(addUser(user.data));
         
     } catch (err) {
