@@ -4,18 +4,20 @@ import axios from "axios";
 import { addUser } from "./features/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 import Error from "./Error";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Signup() {
+
+  const {user, isAuthenticated, getAccessTokenSilently} = useAuth0();
+  
+
   const [imgPreview, setImgPreview] = useState("");
   const [img, setImg] = useState("");
   const [firstName, setFname] = useState("");
   const [lastName, setLname] = useState("");
-  const [email, setEmail] = useState("");
-  const [passWord, setPassword] = useState("");
   const [state, setState] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
@@ -29,6 +31,7 @@ export default function Signup() {
   const [goalInput, setGoalInput] = useState([]);
 
   const [err, setErr] = useState([]);
+  const [loading, setloading] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,41 +39,45 @@ export default function Signup() {
   async function handleClick(e) {
     e.preventDefault();
 
+    const token = await getAccessTokenSilently();
+
     try {
       const formData = new FormData();
       formData.append("img", img);
       formData.append("firstName", firstName);
       formData.append("lastName", lastName);
-      formData.append("email", email);
-      formData.append("passWord", passWord);
+      formData.append("email", user.name);
       formData.append("state", state);
       formData.append("age", age);
       formData.append("gender", gender);
       formData.append("occupation", occupation);
       formData.append("techStacks", techStacks);
       formData.append("goals", goals);
+      
 
       const newUser = await axios.post(
-        "http://localhost:3002/signup",
+        "http://localhost:3002/createProfile",
         formData,
         {
           withCredentials: true,
           headers: {
             "Content-Type": "multipart/form-data",
+            Authorization : `Bearer ${token}`
           },
         }
       );
 
       if (newUser.data.data) {
+        setloading(false)
         setImg("");
         setImgPreview("");
 
         dispatch(addUser(newUser.data.data));
-        alert("signed up successfully!");
 
         return navigate("/feed");
       }
     } catch (err) {
+      setloading(false);
       const errors = err.response?.data?.message || err.message;
       const newerr = errors.replace("User validation failed: ", "").split(",");
 
@@ -200,14 +207,21 @@ export default function Signup() {
       {/* Error */}
       {err.length > 0 && <Error err={err} setErr={setErr} />}
 
+      {loading && (
+        <div className="outer-logout">
+          <h1 className="text-lg font-semibold">Signed you up...</h1>
+        </div>
+      )}
+
       <div className="flex justify-center items-center">
         <div className="flex flex-col justify-center items-center bg-black w-1/2 p-10 rounded-lg my-8">
           <h2 className="text-white text-2xl pb-8 font-semibold">
-            Welcome to DevTinder
+            Create Dev Profile
           </h2>
           <form
             className="flex flex-col space-y-4"
             onSubmit={(e) => {
+              setloading(true);
               handleClick(e);
             }}
           >
@@ -250,28 +264,6 @@ export default function Signup() {
                 placeholder="Last Name"
                 value={lastName}
                 onChange={(e) => setLname(e.target.value)}
-              />
-            </div>
-
-            {/* email and password */}
-            <div className="group margin">
-              <input
-                className="hoverInput"
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <input
-                className="hoverInput"
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                value={passWord}
-                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
@@ -408,16 +400,10 @@ export default function Signup() {
             {/* signup or login */}
             <div className="w-full ">
               <div className="flex justify-center pb-4">
-                <button type="submit" className="btn btn-outline">
-                  /POST Signup
+                <button type="submit" className="btn btn-outline border-none bg-blue-800 hover:bg-blue-900">
+                  /POST Register
                 </button>
               </div>
-              <p className="text-center">
-                Or Already have an Account?{" "}
-                <Link to={"/login"} className="text-blue-400 hover:underline">
-                  LogIn
-                </Link>
-              </p>
             </div>
             <div> </div>
           </form>
