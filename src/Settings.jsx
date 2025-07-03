@@ -5,26 +5,30 @@ import DeleteProfile from "./DeleteProfile";
 import Error from "./Error";
 
 import deleteMyProfile from "./API_Calling/deleteMyProfile";
-import myLogout from "./API_Calling/myLogout";
+import dispatchEmoty from "./API_Calling/dispatchEmoty";
 import { useDispatch } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Settings() {
+  const { getAccessTokenSilently, logout } = useAuth0();
   const [profile, setProfile] = useState(false);
   const [appe, setAppe] = useState(false);
 
   const [remove, setRemove] = useState(false);
 
   const [err, setErr] = useState([]);
-  const [logout, setLogout] = useState(false);
+  const [myLogout, setLogout] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // delete profile
   async function handleDelete() {
-    await deleteMyProfile(setRemove, setErr);
-    await myLogout(setLogout, dispatch, navigate, setErr);
-    alert(`Profile successfuly deleted!`);
+    const token = await getAccessTokenSilently();
+    await deleteMyProfile(token, setRemove, setErr);
+
+    dispatchEmoty(dispatch);
+    logout({ logoutParams: { returnTo: "http://localhost:5173/index" } });
   }
 
   return (
@@ -57,8 +61,8 @@ export default function Settings() {
                 </Link>
               </h1>
               <h1 className="individual-heading">
-                <Link to={"/updatePassword"} className="justify-between">
-                  Update Password
+                <Link to={"/updateProfilePicture"} className="justify-between">
+                  Update Profile Picture
                 </Link>
               </h1>
               <h1 className="individual-heading">
