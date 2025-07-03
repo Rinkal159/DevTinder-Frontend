@@ -7,8 +7,10 @@ import Identity from "./Identity";
 import Error from "./Error";
 
 import acceptOrRejectReq from "./API_Calling/acceptOrRejectReq";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Requests() {
+  const {getAccessTokenSilently}= useAuth0();
   const receivedUsers = useSelector((state) => state.sendReq); //i sent the request
   const sentUsers = useSelector((state) => state.receivedReq); //they sent the request
   const connections = useSelector((state) => state.connections); //connections
@@ -35,8 +37,9 @@ export default function Requests() {
   }
 
   // accept or reject directly in the feed
-  async function aORr(status, user) {
-    await acceptOrRejectReq(status, user, dispatch, setErr, navigate);
+  async function aORr( status, user) {
+    const token = await getAccessTokenSilently();
+    await acceptOrRejectReq(token, status, user, dispatch, setErr, navigate);
   }
 
   function showPush() {
@@ -149,13 +152,13 @@ export default function Requests() {
                         />
                         <div className="buttons justify-end mr-2">
                           <button
-                            onClick={() => aORr("Reject", user)}
+                            onClick={() => aORr("Reject", user._id)}
                             className="ignored-pull"
                           >
                             <i className="fa-solid fa-xmark"></i>
                           </button>
                           <button
-                            onClick={() => aORr("Accept", user)}
+                            onClick={() => aORr("Accept", user._id)}
                             className="interested-pull"
                           >
                             <i className="fa-solid fa-check"></i>
