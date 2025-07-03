@@ -1,10 +1,13 @@
 import axios from "axios";
 
-export default async function deleteMyProfile(setRemove, setErr) {
+export default async function deleteMyProfile(token,setRemove, setErr) {
     try {
 
         const res = await axios.delete("http://localhost:3002/profile/delete", {
-            withCredentials: true
+            withCredentials: true,
+            headers : {
+                Authorization : `Bearer ${token}`
+              }
         });
 
         setRemove(false);
