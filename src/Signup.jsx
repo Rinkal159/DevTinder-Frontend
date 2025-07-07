@@ -8,11 +8,12 @@ import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 import Error from "./Error";
 import { useAuth0 } from "@auth0/auth0-react";
+import ToggleButton from "./ToggleButton";
+import { Placeholder, SingleValue } from "react-select/animated";
+import Loading from "./Loading";
 
 export default function Signup() {
-
-  const {user, isAuthenticated, getAccessTokenSilently} = useAuth0();
-  
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   const [imgPreview, setImgPreview] = useState("");
   const [img, setImg] = useState("");
@@ -36,6 +37,68 @@ export default function Signup() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const customStyles = {
+    control: (base, state) => ({
+      ...base,
+      cursor: "text",
+      margin: "0.25rem",
+      backgroundColor: document.documentElement.classList.contains("dark")
+        ? "#d0d0d0"
+        : "rgba(255, 255, 255, 0.6);",
+      borderColor: document.documentElement.classList.contains("dark")
+        ? "black"
+        : "rgba(255, 255, 255, 0.6);",
+      "&:hover": {
+        borderColor: document.documentElement.classList.contains("dark")
+        ? "white"
+        : "#b81eff",
+        boxShadow : document.documentElement.classList.contains("dark")
+        ? "rgba(35, 35, 35, 0.15) 0px 5px 0px -4px;"
+        : "rgba(21, 0, 43, 0.3) 0px 4px 4px -4px;"
+      },
+      boxShadow : "rgba(21, 0, 43, 0.3) 0px 4px 6px -4px;"
+    }),
+    placeholder : (base) => ({
+      ...base,
+      color : "black"
+    }),
+    menuList: (base) => ({
+      ...base,
+      maxHeight: "15rem",
+      backgroundColor: document.documentElement.classList.contains("dark")
+        ? "black"
+        : "white",
+    }),
+    option: (base, state) => ({
+      ...base,
+      cursor: "pointer",
+      color: document.documentElement.classList.contains("dark")
+        ? "white"
+        : "black",
+      color: state.isFocused
+        ? "black"
+        : document.documentElement.classList.contains("dark")
+        ? "white"
+        : "black",
+    }),
+    singleValue: (base) => ({
+      ...base,
+      color: document.documentElement.classList.contains("dark")
+        ? "white"
+        : "black",
+    }),
+    input: (base) => ({
+      ...base,
+      color: document.documentElement.classList.contains("dark")
+        ? "white"
+        : "black",
+    }),
+    clearIndicator: (base) => ({
+      ...base,
+      cursor: "pointer",
+    }),
+  };
+
   async function handleClick(e) {
     e.preventDefault();
 
@@ -53,7 +116,6 @@ export default function Signup() {
       formData.append("occupation", occupation);
       formData.append("techStacks", techStacks);
       formData.append("goals", goals);
-      
 
       const newUser = await axios.post(
         "http://localhost:3002/createProfile",
@@ -62,13 +124,13 @@ export default function Signup() {
           withCredentials: true,
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization : `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
       if (newUser.data.data) {
-        setloading(false)
+        setloading(false);
         setImg("");
         setImgPreview("");
 
@@ -208,16 +270,15 @@ export default function Signup() {
       {err.length > 0 && <Error err={err} setErr={setErr} />}
 
       {loading && (
-        <div className="outer-logout">
-          <h1 className="text-lg font-semibold">Signed you up...</h1>
-        </div>
+        <Loading  
+          msg="Signing in"
+        />
       )}
 
-      <div className="flex justify-center items-center">
-        <div className="flex flex-col justify-center items-center bg-black w-1/2 p-10 rounded-lg my-8">
-          <h2 className="text-white text-2xl pb-8 font-semibold">
-            Create Dev Profile
-          </h2>
+      <div className="background">
+        <div className="signup-container">
+          <h2 className="signup-heading">Create Dev Profile</h2>
+
           <form
             className="flex flex-col space-y-4"
             onSubmit={(e) => {
@@ -228,15 +289,12 @@ export default function Signup() {
             {/* image */}
             <div className="group margin ">
               <img
-                src={
-                  img
-                    ? imgPreview
-                    : "https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png"
-                }
+                src={img ? imgPreview : "../public/user2.jpg"}
                 alt="Profile picture"
                 className="h-24 w-24 rounded-full object-cover"
               />
               <input
+              className="fileInput"
                 type="file"
                 name="image"
                 id="image"
@@ -301,7 +359,7 @@ export default function Signup() {
                   value="male"
                   onChange={(e) => setGender(e.target.value)}
                 />
-                <label className="text-white cursor-pointer" htmlFor="male">
+                <label className="radio-label" htmlFor="male">
                   Male
                 </label>
               </div>
@@ -315,7 +373,7 @@ export default function Signup() {
                   value="female"
                   onChange={(e) => setGender(e.target.value)}
                 />
-                <label className="text-white cursor-pointer" htmlFor="female">
+                <label className="radio-label" htmlFor="female">
                   Female
                 </label>
               </div>
@@ -329,7 +387,7 @@ export default function Signup() {
                   value="others"
                   onChange={(e) => setGender(e.target.value)}
                 />
-                <label className="text-white cursor-pointer" htmlFor="others">
+                <label className="radio-label" htmlFor="others">
                   others
                 </label>
               </div>
@@ -341,17 +399,7 @@ export default function Signup() {
               value={stateInput}
               onChange={handleState}
               placeholder="State"
-              styles={{
-                control: (base) => ({
-                  ...base,
-                  cursor: "text",
-                  margin: "0.25rem",
-                }),
-                menuList: (base) => ({
-                  ...base,
-                  maxHeight: "15rem",
-                }),
-              }}
+              styles={customStyles}
             />
 
             {/* tech stack */}
@@ -361,17 +409,7 @@ export default function Signup() {
               value={techInput}
               onChange={handleStacks}
               placeholder="Tech Stacks"
-              styles={{
-                control: (base) => ({
-                  ...base,
-                  cursor: "text",
-                  margin: "0.25rem",
-                }),
-                menuList: (base) => ({
-                  ...base,
-                  maxHeight: "15rem",
-                }),
-              }}
+              styles={customStyles}
             />
 
             {/* goals */}
@@ -382,25 +420,14 @@ export default function Signup() {
                 value={goalInput}
                 onChange={handlegoals}
                 placeholder="Goals on DevTinder"
-                styles={{
-                  control: (base) => ({
-                    ...base,
-                    cursor: "text",
-                    margin: "0.25rem",
-                  }),
-
-                  menuList: (base) => ({
-                    ...base,
-                    maxHeight: "10rem",
-                  }),
-                }}
+                styles={customStyles}
               />
             </div>
 
             {/* signup or login */}
             <div className="w-full ">
-              <div className="flex justify-center pb-4">
-                <button type="submit" className="btn btn-outline border-none bg-blue-800 hover:bg-blue-900">
+              <div className="flex justify-center">
+                <button type="submit" className="signup-button">
                   /POST Register
                 </button>
               </div>
