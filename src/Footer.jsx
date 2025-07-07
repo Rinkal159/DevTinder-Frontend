@@ -1,25 +1,28 @@
+import ToggleButton from "./ToggleButton";
+
 export default function Footer() {
   return (
-    <footer className="flex justify-evenly footer sm:footer-horizontal bg-neutral text-neutral-content p-10 text-[1rem]">
+    <footer className="footer-bg">
+
       <nav>
-        <h6 className="footer-title">Services</h6>
-        <a className="link link-hover">Branding</a>
-        <a className="link link-hover">Design</a>
-        <a className="link link-hover">Marketing</a>
-        <a className="link link-hover">Advertisement</a>
+        <h6 className="footer-heading">Services</h6>
+        <a className="footer-content">Branding</a>
+        <a className="footer-content">Design</a>
+        <a className="footer-content">Marketing</a>
+        <a className="footer-content">Advertisement</a>
       </nav>
       <nav>
-        <h6 className="footer-title">Company</h6>
-        <a className="link link-hover">About us</a>
-        <a className="link link-hover">Contact</a>
-        <a className="link link-hover">Jobs</a>
-        <a className="link link-hover">Press kit</a>
+        <h6 className="footer-heading">Company</h6>
+        <a className="footer-content">About us</a>
+        <a className="footer-content">Contact</a>
+        <a className="footer-content">Jobs</a>
+        <a className="footer-content">Press kit</a>
       </nav>
       <nav>
-        <h6 className="footer-title">Legal</h6>
-        <a className="link link-hover">Terms of use</a>
-        <a className="link link-hover">Privacy policy</a>
-        <a className="link link-hover">Cookie policy</a>
+        <h6 className="footer-heading">Legal</h6>
+        <a className="footer-content">Terms of use</a>
+        <a className="footer-content">Privacy policy</a>
+        <a className="footer-content">Cookie policy</a>
       </nav>
     </footer>
   );
