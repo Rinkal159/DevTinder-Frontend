@@ -1,39 +1,49 @@
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+import Footer from "./Footer";
+import ToggleButton from "./ToggleButton";
 
 export default function Index() {
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 
-  const myUser = useSelector((state) => state.user);
   const navigate = useNavigate();
 
-  
   function handleFeed() {
     return navigate("/feed");
   }
 
   return (
-    <div className="flex h-[calc(100vh-70px)] flex-col gap-y-8 justify-center items-center">
-      <h1 className="text-7xl font-black">Find Your README of Life.</h1>
-      {isAuthenticated ? (
-        <button
-          onClick={handleFeed}
-          className="btn btn-neutral btn-outline rounded-full text-2xl px-7 py-7"
-        >
-          Feed()
-        </button>
-      ) : (
-        <button
-          onClick={() =>
-            loginWithRedirect({
-              authorizationParams: { prompt: "login" }})
-          }
-          className="btn btn-neutral btn-outline rounded-full text-2xl px-7 py-7"
-        >
-          Init()
-        </button>
-      )}
+    <div>
+      <h1 className="devTinder-heading">
+        <i className="fa-solid fa-code"></i>&nbsp;DevTinder
+      </h1>
+
+      <div className="index">
+        <h1 className="text-7xl font-medium text-index">
+          Find Your README of Life.
+        </h1>
+        {isAuthenticated ? (
+          <button onClick={handleFeed} className="index-btn">
+            Feed()
+          </button>
+        ) : (
+          <button
+            onClick={() =>
+              loginWithRedirect({
+                authorizationParams: { prompt: "login" },
+              })
+            }
+            className="index-btn"
+          >
+            Init()
+          </button>
+        )}
+
+      </div>
+
+
+      <Footer />
     </div>
   );
 }
