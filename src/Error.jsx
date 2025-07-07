@@ -7,7 +7,7 @@ export default function Error({ err, setErr }) {
           <i className="fa-solid fa-xmark"></i>
         </button>
         <h2 className="err-heading">Error</h2>
-        <ul>
+        <ul className="list-of-errors">
           {err.map((li, i) => (
             <li className="errors" key={i}>
               {li}
