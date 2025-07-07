@@ -1,4 +1,4 @@
-
+import './index.css'
 
 export default function Identity({user, showUserProfile}) {
   return (
@@ -9,8 +9,7 @@ export default function Identity({user, showUserProfile}) {
         alt={`${user.firstName} ${user.lastName}`}
       />
       <p
-        
-        className="text-black cursor-pointer hover:font-semibold"
+        className="identity"
       >
         {user.firstName} {user.lastName}
       </p>
