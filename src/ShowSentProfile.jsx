@@ -23,9 +23,7 @@ export default function ShowSentProfile() {
   }
 
   return (
-    <div>
-      
-
+    <div className="h-screen">
       <ShowFeed
         feedUsers={user.individual}
         sendIgnoreReq={deleteReq}
