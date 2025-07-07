@@ -74,7 +74,7 @@ export default function Feed() {
   }, []);
 
   return (
-    <div className=" pb-4 grid grid-cols-[_1fr_1.7fr] bg-white ">
+    <div className=" feed-bg ">
   
       <Requests />
       <ShowFeed
