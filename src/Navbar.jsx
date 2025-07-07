@@ -7,6 +7,7 @@ import "./index.css";
 import Error from "./Error";
 import { useAuth0 } from "@auth0/auth0-react";
 import dispatchEmoty from "./API_Calling/dispatchEmoty";
+import ToggleButton from "./ToggleButton";
 
 export default function NavBar() {
   const { user, isAuthenticated, logout } = useAuth0();
@@ -32,14 +33,14 @@ export default function NavBar() {
         {err.length > 0 && <Error err={err} setErr={setErr} />}
 
         <div className="flex-1">
-          <Link to={"/index"} className="btn btn-ghost text-2xl">
-            <i className="fa-solid fa-code"></i>DevTinder
+          <Link to={"/index"} className="devTinder">
+            <i className="fa-solid fa-code"></i>&nbsp;DevTinder
           </Link>
         </div>
 
         {state ? (
-          <div className="flex gap-2 items-center">
-            {state && <p>Welcome, {state.firstName}</p>}
+          <div className="flex gap-1 items-center">
+            <ToggleButton />
 
             <div className="dropdown dropdown-end mx-4">
               <div tabIndex={0} role="button" className="">
@@ -76,22 +77,9 @@ export default function NavBar() {
           </div>
         ) : (
           isAuthenticated && (
-            <div className="dropdown dropdown-end flex items-center gap-x-4">
-              <p className="text-lg">Hello {user.nickname}</p>
-              <div tabIndex={0} role="button" className="">
-                <img
-                  src={user.picture}
-                  alt={`${user.nickname}`}
-                  className="rounded-full object-cover w-12 h-12 "
-                />
-                <div
-                  tabIndex={0}
-                  className="bg-blue-800 hover:bg-blue-900 flex flex-col menu menu-sm dropdown-content rounded-box z-1 mt-5 shadow"
-                >
-                  <h1 onClick={handleLogout} className="px-2 py-1 hover:font-semibold">Logout</h1>
-                </div>
-              </div>
-            </div>
+            <h1 onClick={handleLogout} className="logout-navbar">
+              Logout
+            </h1>
           )
         )}
 
