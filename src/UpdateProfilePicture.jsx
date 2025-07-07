@@ -5,6 +5,8 @@ import updateProfilePicture from "./API_Calling/updateProfilePicture";
 import { useAuth0 } from "@auth0/auth0-react";
 import Error from "./Error";
 import SuccessMessage from "./SuccessMessage";
+import Loading from "./Loading";
+import './index.css'
 
 export default function UpdateProfilePicture() {
   const user = useSelector((state) => state.user);
@@ -52,11 +54,9 @@ export default function UpdateProfilePicture() {
     <div>
       {/* Loading */}
       {load && (
-        <div className="outer-logout">
-          <h1 className="text-lg font-semibold">
-            Updating Your Profile Picture...
-          </h1>
-        </div>
+        <Loading
+        msg="Updating Profile Picture"
+        />
       )}
 
       {/* Password changed message */}
@@ -70,8 +70,8 @@ export default function UpdateProfilePicture() {
       {/* Error */}
       {err.length > 0 && <Error err={err} setErr={setErr} />}
 
-      <div className="w-full flex flex-col items-center gap-y-8">
-        <h1 className="navbar-headings pt-8">
+      <div className="w-full flex flex-col items-center h-screen gap-y-8 bg-updateBg">
+        <h1 className="profile-headings pt-8">
           &lt; Update Profile Picture / &gt;
         </h1>
 
@@ -82,7 +82,7 @@ export default function UpdateProfilePicture() {
           handleImage={handleImage}
         />
 
-        <button className="btn btn-outline" onClick={uploadImg}>
+        <button className="update-btns" onClick={uploadImg}>
           Update
         </button>
       </div>

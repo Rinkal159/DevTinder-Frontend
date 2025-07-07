@@ -10,7 +10,7 @@ export default function SuccessMessage({ message, setSuccess }) {
   }, [setSuccess]);
   return (
     <div className="outer-error">
-        <h2 className="text-xl font-semibold py-6 px-2 text-green-300">{message}&nbsp;&nbsp;<i className="fa-regular fa-thumbs-up"></i></h2>
+        <h2 className="success">{message}&nbsp;&nbsp;<i className="fa-regular fa-thumbs-up"></i></h2>
     </div>
   );
 }

@@ -6,6 +6,8 @@ import DropDownInupts from "./DropDownInupts";
 import Error from "./Error";
 import updateProfile from "./API_Calling/updateProfile";
 import SuccessMessage from "./SuccessMessage";
+import Loading from "./Loading";
+import './index.css';
 
 export default function UpdatePassword() {
   const user = useSelector((state) => state.user);
@@ -216,19 +218,19 @@ export default function UpdatePassword() {
   ];
 
   return (
-    <div>
+    <div className="update">
       {/* Loading */}
       {load && (
-        <div className="outer-logout">
-          <h1 className="text-lg font-semibold">Updating Your Profile...</h1>
-        </div>
+        <Loading
+          msg="Updating Profile"
+        />
       )}
 
       {/* Password changed message */}
       {pass && (
         <SuccessMessage
           setSuccess={setPass}
-          message="Profile changed successfully!!"
+          message="Profile updated successfully!!"
         />
       )}
 
@@ -236,7 +238,7 @@ export default function UpdatePassword() {
       {err.length > 0 && <Error err={err} setErr={setErr} />}
 
       <div>
-        <h1 className="navbar-headings my-8">&lt; Update Profile / &gt;</h1>
+        <h1 className="profile-headings py-4">&lt; Update Profile / &gt;</h1>
 
         <form
           onSubmit={(e) => {
@@ -291,7 +293,7 @@ export default function UpdatePassword() {
           />
 
           <button
-            className="btn btn-outline self-center text-base mb-8"
+            className="update-btns"
             type="submit"
           >
             Update
