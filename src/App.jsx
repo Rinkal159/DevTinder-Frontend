@@ -19,13 +19,16 @@ export default function App() {
     <div>
       <BrowserRouter>
         <Routes>
+          <Route path="/index" element={<Index />} />
           <Route path="/" element={<Body />}>
-            <Route path="/index" element={<Index />} />
             <Route path="/existence" element={<Existence />} />
             <Route path="/createProfile" element={<Signup />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/updateProfile" element={<UpdateProfile />} />
-            <Route path="/updateProfilePicture" element={<UpdateProfilePicture />} />
+            <Route
+              path="/updateProfilePicture"
+              element={<UpdateProfilePicture />}
+            />
             <Route path="/settings" element={<Settings />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/sentUserProfile" element={<ShowSentProfile />} />
