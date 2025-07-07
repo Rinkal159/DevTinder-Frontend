@@ -8,6 +8,7 @@ import { addUser } from "./features/user/userSlice";
 
 import Error from "./Error";
 import dispatchEmoty from "./API_Calling/dispatchEmoty";
+import Loading from "./Loading";
 
 export default function Existence() {
   const [load, setLoad] = useState(true);
@@ -22,14 +23,13 @@ export default function Existence() {
     async function checkExi() {
       if (isLoading || !isAuthenticated || !user) return;
       try {
-        
         const email = user.email;
-        
+        console.log(email);
 
         const res = await axios.post(
           "http://localhost:3002/existence",
           {
-            email : email,
+            email,
           },
           {
             withCredentials: true,
@@ -61,9 +61,9 @@ export default function Existence() {
   return (
     <div>
       {load && (
-        <div className="outer-logout">
-          <h1 className="text-xl font-semibold">Validating You...</h1>
-        </div>
+        <Loading
+          msg="Validating you"
+        />
       )}
 
       {/* Error */}
