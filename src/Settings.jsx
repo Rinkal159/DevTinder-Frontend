@@ -32,75 +32,61 @@ export default function Settings() {
   }
 
   return (
-    <div className="w-1/2 mx-auto">
-      {err.length > 0 && <Error err={err} setErr={setErr} />}
+    <div className="settings">
+      <div className="w-1/2 mx-auto">
+        {err.length > 0 && <Error err={err} setErr={setErr} />}
 
-      <h1 className="navbar-headings pt-4">Settings</h1>
-      <div className="w-full">
-        {/* PROFILE */}
-        <div className="flex flex-col w-full">
-          <h1
-            onClick={() => {
-              profile ? setProfile(false) : setProfile(true);
-            }}
-            className="heading"
-          >
-            {profile ? (
-              <i className="fa-solid fa-chevron-down"></i>
-            ) : (
-              <i className="fa-solid fa-angle-up"></i>
+        <h1 className="profile-headings pt-4">Settings</h1>
+        <div className="w-full">
+          {/* PROFILE */}
+          <div className="flex flex-col w-full">
+            <h1
+              onClick={() => {
+                profile ? setProfile(false) : setProfile(true);
+              }}
+              className="heading"
+            >
+              {profile ? (
+                <i className="fa-solid fa-chevron-down"></i>
+              ) : (
+                <i className="fa-solid fa-angle-up"></i>
+              )}
+              &nbsp;&nbsp;Profile
+            </h1>
+
+            {profile && (
+              <div className="w-1/2 self-center">
+                <h1 className="individual-heading">
+                  <Link to={"/updateProfile"} className="justify-between">
+                    Update Profile
+                  </Link>
+                </h1>
+                <h1 className="individual-heading">
+                  <Link
+                    to={"/updateProfilePicture"}
+                    className="justify-between"
+                  >
+                    Update Profile Picture
+                  </Link>
+                </h1>
+                <h1 className="individual-heading">
+                  <a onClick={() => setRemove(true)}>Delete Profile</a>
+                </h1>
+              </div>
             )}
-            &nbsp;&nbsp;Profile
-          </h1>
-
-          {profile && (
-            <div className="w-1/2 self-center">
-              <h1 className="individual-heading">
-                <Link to={"/updateProfile"} className="justify-between">
-                  Update Profile
-                </Link>
-              </h1>
-              <h1 className="individual-heading">
-                <Link to={"/updateProfilePicture"} className="justify-between">
-                  Update Profile Picture
-                </Link>
-              </h1>
-              <h1 className="individual-heading">
-                <a onClick={() => setRemove(true)}>Delete Profile</a>
-              </h1>
-            </div>
-          )}
+          </div>
+          <hr />
         </div>
 
-        <hr />
-
-        {/* APPEARENCE */}
-        <div>
-          <h1
-            onClick={() => {
-              appe ? setAppe(false) : setAppe(true);
+        {remove && (
+          <DeleteProfile
+            cancel={() => {
+              setRemove(false);
             }}
-            className="heading"
-          >
-            {appe ? (
-              <i className="fa-solid fa-chevron-down"></i>
-            ) : (
-              <i className="fa-solid fa-angle-up"></i>
-            )}
-            &nbsp;&nbsp;Appearence
-          </h1>
-        </div>
-        <hr />
+            remove={handleDelete}
+          />
+        )}
       </div>
-
-      {remove && (
-        <DeleteProfile
-          cancel={() => {
-            setRemove(false);
-          }}
-          remove={handleDelete}
-        />
-      )}
     </div>
   );
 }
