@@ -62,19 +62,19 @@ export default function Requests() {
       {/* Error */}
       {err.length > 0 && <Error err={err} setErr={setErr} />}
 
-      <div className="h-screen pt-4">
-        <div className=" grid grid-cols-[_1fr_1fr_1fr] contentcenter  h-full bg-black">
+      <div className="req-cont">
+        <div className="req-all">
           {/* PUSH */}
           <div
             className={`${
-              push ? "bg-gradient-to-b from-white to-green-500" : "bg-black"
+              push ? "push-gradient" : "bg-defaultLight"
             } center-the-heading`}
           >
             <div className="flex flex-col items-center">
               <h1
                 onClick={showPush}
                 className={`cols ${
-                  push ? "underline font-semibold  text-green-700" : ""
+                  push ? "push-heading" : 'text-defaultDark'
                 }`}
               >
                 Pushed Rrequest
@@ -82,7 +82,7 @@ export default function Requests() {
               {receivedUsers.bunch && (
                 <span
                   className={`count-reqs ${
-                    push ? "text-green-700" : "text-white"
+                    push ? "text-reqPushHeading" : "text-defaultDark"
                   } `}
                 >
                   {receivedUsers.bunch.length}
@@ -102,7 +102,7 @@ export default function Requests() {
                       />
                     ))
                   ) : (
-                    <p className="text-white text-center">
+                    <p className="noReqText">
                       Not sent request yet! Send Requests, Make Connections!!
                     </p>
                   )}
@@ -115,15 +115,15 @@ export default function Requests() {
           <div
             className={`${
               pull
-                ? "bg-gradient-to-b from-white to-blue-400 to-80%"
-                : "bg-black"
+                ? "pull-gradient"
+                : "bg-defaultLight"
             } center-the-heading`}
           >
             <div className="flex flex-col items-center">
               <h1
                 onClick={showPull}
                 className={`cols ${
-                  pull ? "underline font-semibold  text-blue-700" : ""
+                  pull ? "pull-heading" : 'text-defaultDark'
                 }`}
               >
                 Pulled Rrequest
@@ -131,7 +131,7 @@ export default function Requests() {
               {sentUsers.bunch && (
                 <span
                   className={`count-reqs ${
-                    pull ? "text-blue-700" : "text-white"
+                    pull ? "text-reqPullHeading" : "text-defaultDark"
                   } `}
                 >
                   {sentUsers.bunch.length}
@@ -168,7 +168,7 @@ export default function Requests() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-center">
+                  <p className="noReqText">
                     None has sent you Request! Instead send requests, make
                     connections!!
                   </p>
@@ -181,15 +181,15 @@ export default function Requests() {
           <div
             className={`${
               merge
-                ? "bg-gradient-to-b from-white to-red-400 "
-                : " text-red-700 border-red-300"
+                ? "merge-gradient "
+                : "bg-defaultLight"
             }  center-the-heading`}
           >
             <div className="flex flex-col items-center">
               <h1
                 onClick={showMerge}
                 className={`cols ${
-                  merge ? "underline font-semibold text-red-700" : ""
+                  merge ? 'merge-heading' : 'text-defaultDark'
                 }`}
               >
                 Merged Request
@@ -197,7 +197,7 @@ export default function Requests() {
               {connections.bunch && (
                 <span
                   className={`count-reqs ${
-                    merge ? "text-red-700" : "text-white"
+                    merge ? "text-reqMergeHeading" : "text-defaultDark"
                   } `}
                 >
                   {connections.bunch.length}
@@ -205,17 +205,19 @@ export default function Requests() {
               )}
             </div>
             {merge && (
-              <div className="w-full">
+              <div>
+                <div className="req-container ">
                 {connections.bunch && connections.bunch.length > 0 ? (
-                  <div className="req-container ">
-                    {connections.bunch.map((con, i) => (
+
+                    connections.bunch.map((con, i) => (
                       <Identity key={i} user={con} />
-                    ))}
-                  </div>
+                    ))
                 ) : (
-                  <p></p>
+                  <p className="noReqText">You have zero connections.</p>
                 )}
               </div>
+                  </div>
+
             )}
           </div>
         </div>
