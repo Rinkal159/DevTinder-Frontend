@@ -10,7 +10,7 @@ import acceptOrRejectReq from "./API_Calling/acceptOrRejectReq";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Requests() {
-  const {getAccessTokenSilently}= useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
   const receivedUsers = useSelector((state) => state.sendReq); //i sent the request
   const sentUsers = useSelector((state) => state.receivedReq); //they sent the request
   const connections = useSelector((state) => state.connections); //connections
@@ -37,7 +37,7 @@ export default function Requests() {
   }
 
   // accept or reject directly in the feed
-  async function aORr( status, user) {
+  async function aORr(status, user) {
     const token = await getAccessTokenSilently();
     await acceptOrRejectReq(token, status, user, dispatch, setErr, navigate);
   }
@@ -73,11 +73,18 @@ export default function Requests() {
             <div className="flex flex-col items-center">
               <h1
                 onClick={showPush}
-                className={`cols ${
-                  push ? "push-heading" : 'text-defaultDark'
+                className={`cols group ${
+                  push ? "push-heading" : "text-defaultDark"
                 }`}
               >
-                Pushed Rrequest
+                Pushed Request
+                {push && (
+                  <span
+                    className={`span-underline ${
+                      push && "scale-x-100"
+                    } bg-reqPushHeading`}
+                  ></span>
+                )}
               </h1>
               {receivedUsers.bunch && (
                 <span
@@ -95,7 +102,6 @@ export default function Requests() {
                   {receivedUsers.bunch && receivedUsers.bunch.length > 0 ? (
                     receivedUsers.bunch.map((user, i) => (
                       <Identity
-                        className="req"
                         key={i}
                         user={user}
                         showUserProfile={showSendProfile}
@@ -114,19 +120,24 @@ export default function Requests() {
           {/* PULL */}
           <div
             className={`${
-              pull
-                ? "pull-gradient"
-                : "bg-defaultLight"
+              pull ? "pull-gradient" : "bg-defaultLight"
             } center-the-heading`}
           >
             <div className="flex flex-col items-center">
               <h1
                 onClick={showPull}
-                className={`cols ${
-                  pull ? "pull-heading" : 'text-defaultDark'
+                className={`cols group ${
+                  pull ? "pull-heading" : "text-defaultDark"
                 }`}
               >
                 Pulled Rrequest
+                {pull && (
+                  <span
+                    className={`span-underline ${
+                      pull && "scale-x-100"
+                    } bg-reqPullHeading`}
+                  ></span>
+                )}
               </h1>
               {sentUsers.bunch && (
                 <span
@@ -146,7 +157,6 @@ export default function Requests() {
                       <div className="flex flex-col">
                         <Identity
                           key={i}
-                          className="req"
                           user={user}
                           showUserProfile={showReceivedProfile}
                         />
@@ -180,19 +190,24 @@ export default function Requests() {
           {/* MERGE */}
           <div
             className={`${
-              merge
-                ? "merge-gradient "
-                : "bg-defaultLight"
+              merge ? "merge-gradient " : "bg-defaultLight"
             }  center-the-heading`}
           >
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center relative">
               <h1
                 onClick={showMerge}
-                className={`cols ${
-                  merge ? 'merge-heading' : 'text-defaultDark'
+                className={`cols group ${
+                  merge ? "merge-heading" : "text-defaultDark"
                 }`}
               >
                 Merged Request
+                {merge && (
+                  <span
+                    className={`span-underline ${
+                      merge && "scale-x-100"
+                    } bg-reqMergeHeading`}
+                  ></span>
+                )}
               </h1>
               {connections.bunch && (
                 <span
@@ -207,17 +222,15 @@ export default function Requests() {
             {merge && (
               <div>
                 <div className="req-container ">
-                {connections.bunch && connections.bunch.length > 0 ? (
-
+                  {connections.bunch && connections.bunch.length > 0 ? (
                     connections.bunch.map((con, i) => (
                       <Identity key={i} user={con} />
                     ))
-                ) : (
-                  <p className="noReqText">You have zero connections.</p>
-                )}
+                  ) : (
+                    <p className="noReqText">You have zero connections.</p>
+                  )}
+                </div>
               </div>
-                  </div>
-
             )}
           </div>
         </div>
