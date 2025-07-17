@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function ShowSentProfile() {
-  const {getAccessTokenSilently} = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   const user = useSelector((state) => state.sendReq);
   const dispatch = useDispatch();
@@ -19,12 +19,21 @@ export default function ShowSentProfile() {
   async function deleteReq(status) {
     const token = await getAccessTokenSilently();
 
-    await deletReq(token,status, user.individual[0]._id, dispatch, navigate, setErr);
+    await deletReq(
+      token,
+      status,
+      user.individual[0]._id,
+      dispatch,
+      navigate,
+      setErr
+    );
   }
 
   return (
-    <div className="h-screen">
+    <div className="h-screen bg-userCardBg">
       <ShowFeed
+        actualFeedStyle="feed-sent-receive"
+        userCardBgStyle="user-card-bg-sent-receive"
         feedUsers={user.individual}
         sendIgnoreReq={deleteReq}
         ignore={"Delete"}
