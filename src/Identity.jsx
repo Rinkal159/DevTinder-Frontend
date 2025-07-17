@@ -9,7 +9,7 @@ export default function Identity({user, showUserProfile}) {
         alt={`${user.firstName} ${user.lastName}`}
       />
       <p
-        className="identity"
+        className="identity req"
       >
         {user.firstName} {user.lastName}
       </p>
