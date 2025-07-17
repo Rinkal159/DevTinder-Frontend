@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './globalColors.css';
 import "./index.css";
 import { Link, useNavigate } from "react-router-dom";
 import DeleteProfile from "./DeleteProfile";
@@ -8,26 +9,24 @@ import deleteMyProfile from "./API_Calling/deleteMyProfile";
 import dispatchEmoty from "./API_Calling/dispatchEmoty";
 import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+import Logout from "./Logout";
 
 export default function Settings() {
   const { getAccessTokenSilently, logout } = useAuth0();
   const [profile, setProfile] = useState(false);
-  const [appe, setAppe] = useState(false);
 
   const [remove, setRemove] = useState(false);
 
   const [err, setErr] = useState([]);
-  const [myLogout, setLogout] = useState(false);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   // delete profile
   async function handleDelete() {
     const token = await getAccessTokenSilently();
     await deleteMyProfile(token, setRemove, setErr);
-
     dispatchEmoty(dispatch);
+
     logout({ logoutParams: { returnTo: "http://localhost:5173/index" } });
   }
 
@@ -79,11 +78,13 @@ export default function Settings() {
         </div>
 
         {remove && (
-          <DeleteProfile
+          <Logout
             cancel={() => {
               setRemove(false);
             }}
-            remove={handleDelete}
+            logout={handleDelete}
+            heading='Delete Profile'
+            warning='Are you sure you want to Delete the Profile?'
           />
         )}
       </div>
