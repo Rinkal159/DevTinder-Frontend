@@ -8,7 +8,7 @@ import acceptOrRejectReq from "./API_Calling/acceptOrRejectReq";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function ShowReceivedProfile() {
-  const {getAccessTokenSilently} = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
   const user = useSelector((state) => state.receivedReq);
 
   const [err, setErr] = useState([]);
@@ -32,9 +32,9 @@ export default function ShowReceivedProfile() {
 
   return (
     <div>
-      
-
       <ShowFeed
+        actualFeedStyle="feed-sent-receive"
+        userCardBgStyle="user-card-bg-sent-receive"
         feedUsers={user.individual}
         sendIgnoreReq={reviewReq}
         sendInterestedReq={reviewReq}
