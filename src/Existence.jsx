@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './globalColors.css';
 import "./index.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";

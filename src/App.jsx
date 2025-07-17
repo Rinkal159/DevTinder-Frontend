@@ -9,6 +9,7 @@ import Settings from "./Settings.jsx";
 import Feed from "./Feed.jsx";
 import ShowSentProfile from "./ShowSentProfile.jsx";
 import ShowReceivedProfile from "./ShowReceivedProfile.jsx";
+import './globalColors.css';
 import "./index.css";
 
 import { BrowserRouter } from "react-router-dom";

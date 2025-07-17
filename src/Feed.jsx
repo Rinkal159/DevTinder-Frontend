@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ShowFeed from "./ShowFeed";
 import Requests from "./Requests";
+import './globalColors.css';
 import "./index.css";
 import Error from "./Error";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -78,7 +79,9 @@ export default function Feed() {
   
       <Requests />
       <ShowFeed
+      actualFeedStyle='actual-feed'
         feedUsers={feedUsers}
+        userCardBgStyle='user-card-bg'
         sendIgnoreReq={sendReq}
         sendInterestedReq={sendReq}
         load={load}

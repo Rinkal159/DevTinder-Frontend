@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
+import './globalColors.css';
 import "./index.css";
 import Error from "./Error";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -89,6 +90,8 @@ export default function NavBar() {
               setLogout(false);
             }}
             logout={handleLogout}
+            heading='Logout'
+            warning='Are you sure you want to Logout?'
           />
         )}
       </div>

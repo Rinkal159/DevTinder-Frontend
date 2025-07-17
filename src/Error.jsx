@@ -1,3 +1,4 @@
+import './globalColors.css';
 import "./index.css";
 export default function Error({ err, setErr }) {
   return (
