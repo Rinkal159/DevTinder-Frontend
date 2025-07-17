@@ -23,60 +23,66 @@ export default {
         inputBoxHoverBorder: 'var(--input-box-hover-border)',
         singupButton: 'var(--signup-button)',
         singupButtonHover: 'var(--signup-button-hover)',
-        signupInputBg : 'var(--signup-input-bg)',
+        signupInputBg: 'var(--signup-input-bg)',
 
-        interestedBg : 'var(--feed-interested-bg-hover)',
-        ignoredBg : 'var(--feed-ignored-bg-hover)',
-        interestedBorderText : 'var(--feed-interested-border-text-color)',
-        ignoredBorderText : 'var(--feed-ignored-border-text-color)',
+        interestedBg: 'var(--feed-interested-bg-hover)',
+        ignoredBg: 'var(--feed-ignored-bg-hover)',
+        interestedBorderText: 'var(--feed-interested-border-text-color)',
+        ignoredBorderText: 'var(--feed-ignored-border-text-color)',
 
-        reqPushHeading : 'var(--req-push-text-heading)',
-        reqPullHeading : 'var(--req-pull-text-heading)',
-        reqMergeHeading : 'var(--req-merge-text-heading)',
+        reqPushHeading: 'var(--req-push-text-heading)',
+        reqPullHeading: 'var(--req-pull-text-heading)',
+        reqMergeHeading: 'var(--req-merge-text-heading)',
 
-        logoutBoxBg : 'var(--logout-box-bg)',
-        cancelBg : 'var(--cancel-bg)',
-        cancelHover : 'var(--cancel-hover)',
-        logoutBg : 'var(--logout-bg)',
-        logoutHover : 'var(--logout-hover)',
+        logoutBoxBg: 'var(--logout-box-bg)',
+        cancelBg: 'var(--cancel-bg)',
+        cancelHover: 'var(--cancel-hover)',
+        logoutBg: 'var(--logout-bg)',
+        logoutHover: 'var(--logout-hover)',
 
-        navbarLogout : 'var(--logout-navbar-color)',
-        navbarLogoutHover : 'var(--logout-navbar-hover)',
+        navbarLogout: 'var(--logout-navbar-color)',
+        navbarLogoutHover: 'var(--logout-navbar-hover)',
+        navbarColor : 'var(--navbar-color)',
 
-        errorText : 'var(--error-text)',
+        errorText: 'var(--error-text)',
 
-        btnBg : 'var(--update-btn-bg)',
-        btnHover : 'var(--update-btn-hover)',
+        btnBg: 'var(--update-btn-bg)',
+        btnHover: 'var(--update-btn-hover)',
 
-        successColor : 'var(--success-text)',
+        successColor: 'var(--success-text)',
+
+        pushBg: 'var(--req-push-bg)',
+        pullBg: 'var(--req-pull-bg)',
+        mergeBg: 'var(--req-merge-bg)',
+        settingsBg: 'var(--settings-bg)',
+
+
       },
       backgroundImage: {
         signupContColor: 'var(--signup-cont-color)',
         signupBg: 'var(--signup-bg-color)',
 
+        updateBg: 'var(--update-bg)',
+
+
         userCardBg: 'var(--feed-userCard-bg)',
 
-        pushBg : 'var(--req-push-bg)',
-        pullBg : 'var(--req-pull-bg)',
-        mergeBg : 'var(--req-merge-bg)',
-
-        profileBg : 'var(--profile-bg)',
-
-        settingsBg : 'var(--settings-bg)',
-
-        updateBg : 'var(--update-bg)',
+        profileBg: 'var(--profile-bg)',
       },
 
       boxShadow: {
         feedBoxShadow: 'var(--feed-userCars-boxShadow)',
-        signupBoxShadow : 'var(--singup-box-shadow)',
-        signupInputShadow : 'var(--signup-input-shadow)',
-        singupInputHover : 'var(--signup-input-hover)',
-        errorBoxShadow : 'var(--error-box-shadow)',
-        reqShadow : 'var(--req-shadow)'
+        signupBoxShadow: 'var(--singup-box-shadow)',
+        signupInputShadow: 'var(--signup-input-shadow)',
+        singupInputHover: 'var(--signup-input-hover)',
+        errorBoxShadow: 'var(--error-box-shadow)',
+        reqShadow: 'var(--req-shadow)',
+        navbarShadow : 'var(--navbar-shadow)',
+        footerShadow : 'var(--footer-shadow)',
+        profilePictureShadow : 'var(--profile-picture-shadow)'
       },
       fontFamily: {
-        toggleFont : 'var(--toggleFont)'
+        toggleFont: 'var(--toggleFont)'
       }
     },
   },
