@@ -102,6 +102,7 @@ export default function UpdatePassword() {
     setGoals(myGoals);
   }
 
+  // first name, last name, occupation
   const updateInfo = [
     {
       type: "text",
@@ -237,7 +238,7 @@ export default function UpdatePassword() {
       {/* Error */}
       {err.length > 0 && <Error err={err} setErr={setErr} />}
 
-      <div>
+      <div className="form-parent">
         <h1 className="profile-headings py-4">&lt; Update Profile / &gt;</h1>
 
         <form
