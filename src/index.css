@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cookie&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Quicksand:wght@300..700&display=swap');
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,229 +10,16 @@ body {
 
 /*?--------------------------------------------------------------------------------------------------------*/
 
-:root {
-  --defaultLight: white;
-  --defaultDark: black;
-
-  --req-shadow : rgba(0, 30, 43, 0.3) 0px 10px 10px -4px;
-
-  /** index  */
-  --index-devTinder-heading: white;
-  --index-button-bg-color: white;
-  --index-button-bg-hover: white;
-  --index-button-text-color: black;
-
-  /** Footer  */
-  --footer-bg: white;
-  --footer-heading: black;
-  --footer-content: black;
-
-  /** Signup */
-  --signup-bg-color: radial-gradient(circle at center, #d0c3ff 40%, #efecffcf 40%, #cdbfff 80%);
-  --signup-cont-color: transparent;
-  --input-box-hover-border: #b81eff;
-  --signup-button: #ae5ff9;
-  --signup-button-hover: #7635b2;
-  --signup-input-bg: rgba(255, 255, 255, 0.6);
-  --signup-input-shadow: rgba(21, 0, 43, 0.3) 0px 4px 6px -4px;
-  --signup-input-hover: rgba(21, 0, 43, 0.3) 0px 5px 5px -4px;
-
-
-  /** Feed */
-  --feed-userCard-bg: linear-gradient(to bottom, white 10%, #c8ccff 80%);
-  --feed-userCars-boxShadow:
-    rgba(0, 30, 43, 0.3) 5px 5px 10px -4px;
-  --feed-interested-border-text-color: #008800;
-  --feed-ignored-border-text-color: #db0000;
-  --feed-interested-bg-hover: #006c00;
-  --feed-ignored-bg-hover: #9e0000;
-
-  /** Requests */
-  --req-push-bg: linear-gradient(to bottom, white 10%, #60f7ff 80%);
-  --req-pull-bg: linear-gradient(to bottom, white 10%, #6bffb8 80%);
-  --req-merge-bg: linear-gradient(to bottom, white 10%, #f9a8ff 80%);
-  --req-push-text-heading: rgb(0, 134, 147);
-  --req-pull-text-heading: rgb(0, 165, 0);
-  --req-merge-text-heading: rgb(190, 4, 113);
-
-  /** Logout */
-  --logout-box-bg: white;
-  --cancel-bg: rgb(207, 207, 207);
-  --cancel-hover: darkGray;
-  --logout-bg: rgb(177, 0, 0);
-  --logout-hover: darkRed;
-
-  /** Navbar */
-  --logout-navbar-color: #760398;
-  --logout-navbar-hover: #590074;
-
-  /** Error */
-  --error-text: red;
-  --error-box-shadow: rgba(43, 0, 34, 0.3) 0px 10px 10px 4px;
-
-  /** Profile */
-  --profile-bg: linear-gradient(to bottom, white 10%, #fec4c4 80%);
-
-  /** Settings */
-  --settings-bg: linear-gradient(to bottom, white 10%, #9dfaff 80%);
-
-  /** Update */
-  --update-bg: linear-gradient(to bottom, white 10%, #9bffda 80%);
-  --update-btn-bg: #10ffa7;
-  --update-btn-hover: #00e792;
-
-  /** Success */
-  --success-text: #003c08;
-
-  
-
-}
-
-.dark {
-  --defaultLight: black;
-  --defaultDark: white;
-
-  /*& index  */
-  --index-devTinder-heading: white;
-  --index-button-bg-color: #121212;
-  --index-button-bg-hover: black;
-  --index-button-text-color: white;
-
-  /*& Footer  */
-  --footer-bg: black;
-  --footer-heading: white;
-  --footer-content: white;
-
-  /*& Signup */
-  --signup-bg-color: radial-gradient(circle farthest-side, black 30%, #39003f);
-  --signup-bg-color: radial-gradient(circle at center, #2b002f 40%, #000 20%, #300036 80%);
-  --signup-cont-color: transparent;
-  --input-box-hover-border: white;
-  --signup-button: #ebc1ff;
-  --signup-button-hover: #e2a2ff;
-  --signup-input-bg: #d0d0d0;
-  --signup-input-hover: rgb(235, 193, 255) 0px 5px 0px -4px;
-  ;
-
-  /*& Feed */
-  --feed-userCard-bg: linear-gradient(to bottom, black, #460066);
-  --feed-userCars-boxShadow:
-    rgba(39, 0, 43, 0.806) 5px 15px 10px -4px;
-  --feed-interested-border-text-color: #00ac00;
-  --feed-ignored-border-text-color: #e30000;
-  --feed-interested-bg-hover: #007800;
-  --feed-ignored-bg-hover: #a30000;
-
-  /*& Requests */
-  --req-push-bg: linear-gradient(to bottom, black 10%, rgb(0, 0, 115) 80%);
-  --req-pull-bg: linear-gradient(to bottom, black 10%, #005200 80%);
-  --req-merge-bg: linear-gradient(to bottom, black 10%, rgb(128, 0, 85) 80%);
-  --req-push-text-heading: rgb(37, 186, 255);
-  --req-pull-text-heading: rgb(142, 255, 142);
-  --req-merge-text-heading: rgb(255, 191, 248);
-
-  /*& Logout */
-  --logout-box-bg: #000;
-
-  /*& Navbar */
-  --logout-navbar-color: #ebc1ff;
-  --logout-navbar-hover: #e2a2ff;
-
-  /*& Error */
-  --error-text: rgb(255, 38, 38);
-  --error-box-shadow: rgba(43, 0, 34, 0.133) 0px 10px 10px 4px;
-
-  /*& Profile */
-  --profile-bg: linear-gradient(to bottom, black 10%, #420000 80%);
-
-  /*& Settings */
-  --settings-bg: linear-gradient(to bottom, black 10%, #002b4d 80%);
-
-  /*& Settings */
-  --update-bg: linear-gradient(to bottom, black 10%, #003c08 80%);
-  --update-btn-bg: rgb(0, 142, 47);
-  --update-btn-hover: rgb(0, 106, 0);
-
-  /*& Success */
-  --success-text: #4dffbe;
-}
-
-
+@import './globalColors.css';
 
 /*?---------------------------------------------------------------------------------------------------------*/
 
 
 @layer components {
 
-  /** update profile */
-  .form {
-    @apply flex flex-col gap-y-8 items-start w-1/3 mx-auto
-  }
-
-  .separators {
-    @apply w-full flex flex-col gap-y-2
-  }
-
-  .passwordInput {
-    @apply w-full bg-signupInputBg border border-white py-1.5 px-2 transition duration-200 hover:shadow-singupInputHover rounded-[4px] hover:border-defaultDark
-  }
-
-  .label {
-    @apply text-lg font-medium inline-block text-defaultDark
-  }
-
-  /** Update */
-  .update {
-    @apply bg-updateBg
-  }
-
-  .update-btns {
-    @apply btn btn-outline self-center text-base mb-8 transition duration-300 bg-btnBg hover:bg-btnHover border border-btnBg hover:border-btnHover shadow-singupInputHover hover:shadow-reqShadow text-defaultDark
-  }
-
-  /** Success Msg */
-  .success {
-    @apply text-xl font-semibold text-successColor
-  }
-
-  /** settings */
-
-  .settings {
-    @apply bg-settingsBg h-screen
-  }
-
-  .heading {
-    @apply text-lg font-semibold py-4 hover:cursor-pointer text-defaultDark
-  }
-
-  .individual-heading {
-    @apply pb-4 transition duration-300 hover:cursor-pointer hover:font-semibold text-defaultDark
-  }
-
-  /** Profile */
-  .profile-bg {
-    @apply bg-profileBg
-  }
-
-  .profile-cont {
-    @apply flex flex-col gap-y-6 items-start w-1/2 mx-auto pt-4 pb-8
-  }
-
-  .profile-headings {
-    @apply text-center text-3xl font-semibold self-center text-defaultDark
-  }
-
-  .fieldName {
-    @apply font-medium text-lg text-defaultDark
-  }
-
-  .fieldValue {
-    @apply border px-2 py-1.5 w-full border-defaultDark cursor-default font-normal text-defaultDark
-  }
-
   /** Navbar */
   .navbar {
-    @apply h-[70px] shadow-sm z-10 text-white bg-defaultLight
+    @apply h-[70px] z-10 text-white shadow-navbarShadow
   }
 
   .devTinder {
@@ -258,6 +44,65 @@ body {
 
   .margin {
     @apply mb-1
+  }
+
+  /** Footer */
+  .footer-bg {
+    @apply flex justify-evenly footer sm:footer-horizontal text-neutral-content p-10 text-[1rem] bg-navbarColor shadow-footerShadow
+  }
+
+  .footer-heading {
+    @apply footer-title text-footerHeading
+  }
+
+  .footer-content {
+    @apply link link-hover text-footerContent
+  }
+
+  /** index  */
+  .devTinder-heading {
+    @apply absolute text-2xl font-semibold top-4 left-4 text-indexHeading
+  }
+
+  .index {
+    @apply flex bg-[url('../public/5.jpg')] bg-cover bg-center h-screen flex-col gap-y-8 justify-center items-center text-indexHeading
+  }
+
+  .index-btn {
+    @apply transition duration-300 btn btn-outline rounded-full text-2xl px-7 py-7 text-indexButtonTextColor hover:font-semibold bg-indexButtonBgColor hover:bg-indexButtonBgHover
+  }
+
+  /** signup */
+  .background {
+    @apply flex justify-center items-center bg-signupBg h-screen shadow-footerShadow
+  }
+
+  .signup-container {
+    @apply flex flex-col justify-center items-center w-1/2 rounded-lg bg-signupContColor py-16 shadow-signupBoxShadow
+  }
+
+  .signup-heading {
+    @apply text-white text-2xl font-semibold
+  }
+
+  .groupSignup {
+    @apply flex gap-x-8 items-center justify-center
+  }
+
+  .hoverInput {
+    @apply transition duration-300 text-center px-2 py-[0.4rem] text-base rounded-[5px] mb-1 placeholder:text-black hover:placeholder:text-black border hover:border-inputBoxHoverBorder border-signupInputBg bg-signupInputBg text-black hover:shadow-singupInputHover shadow-signupInputShadow
+  }
+
+  .radio-label {
+    @apply text-defaultDark
+  }
+
+  .signup-button {
+    @apply transition duration-300 btn btn-outline border-none bg-singupButton hover:bg-singupButtonHover text-defaultLight shadow-signupInputShadow
+  }
+
+  .fileInput {
+    @apply border-none
   }
 
   /** logout */
@@ -301,76 +146,21 @@ body {
     @apply transition duration-300 bg-logoutBg border-logoutBg hover:bg-logoutHover hover:border-logoutHover text-white
   }
 
-  /** index  */
-  .devTinder-heading {
-    @apply absolute text-2xl font-semibold top-4 left-4 text-indexHeading
-  }
-
-  .index {
-    @apply flex bg-[url('../public/5.jpg')] bg-cover bg-center h-screen flex-col gap-y-8 justify-center items-center text-indexHeading
-  }
-
-  .index-btn {
-    @apply transition duration-300 btn btn-outline rounded-full text-2xl px-7 py-7 text-indexButtonTextColor hover:font-semibold bg-indexButtonBgColor hover:bg-indexButtonBgHover
-  }
-
-  /** Footer */
-  .footer-bg {
-    @apply flex justify-evenly footer sm:footer-horizontal text-neutral-content p-10 text-[1rem] bg-footerBg
-  }
-
-  .footer-heading {
-    @apply footer-title text-footerHeading
-  }
-
-  .footer-content {
-    @apply link link-hover hover:font-semibold text-footerContent
-  }
-
-  /** signup */
-  .background {
-    @apply flex justify-center items-center bg-signupBg h-screen
-  }
-
-  .signup-container {
-    @apply flex flex-col justify-center items-center w-1/2 rounded-lg bg-signupContColor py-16 shadow-signupBoxShadow
-  }
-
-  .signup-heading {
-    @apply text-white text-2xl font-semibold
-  }
-
-  .group {
-    @apply flex gap-x-8 items-center justify-center
-  }
-
-  .hoverInput {
-    @apply transition duration-300 text-center px-2 py-[0.4rem] text-base rounded-[5px] mb-1 placeholder:text-black hover:placeholder:text-black border hover:border-inputBoxHoverBorder border-signupInputBg bg-signupInputBg text-black hover:shadow-singupInputHover shadow-signupInputShadow
-  }
-
-  .radio-label {
-    @apply text-defaultDark
-  }
-
-  .signup-button {
-    @apply transition duration-300 btn btn-outline border-none bg-singupButton hover:bg-singupButtonHover text-defaultLight shadow-signupInputShadow
-  }
-
-  .fileInput {
-    @apply border-none
-  }
-
   /** Feed */
   .load {
     @apply pt-8 text-center text-2xl text-defaultDark
   }
 
   .feed-bg {
-    @apply grid grid-cols-[_1fr_1.5fr] bg-userCardBg
+    @apply grid grid-cols-[_1fr_1.6fr] pb-5 pt-4 
+  }
+
+  .actual-feed {
+    @apply  bg-userCardBg shadow-navbarShadow rounded-lg ml-3.5
   }
 
   .user-card-bg {
-    @apply flex flex-col items-center pt-8 mb-8 bg-userCardBg h-screen
+    @apply flex flex-col items-center mt-8 mb-8
   }
 
   .user-card-img {
@@ -378,7 +168,7 @@ body {
   }
 
   .user-card {
-    @apply flex flex-col w-[20rem] items-center rounded-b-xl bg-defaultLight shadow-feedBoxShadow
+    @apply flex flex-col w-[20rem] items-center rounded-xl bg-defaultLight shadow-feedBoxShadow
   }
 
   .main-user-info {
@@ -404,11 +194,11 @@ body {
   /** Requests */
 
   .req-cont {
-    @apply h-screen shadow-reqShadow z-10 mr-4 
+    @apply h-screen shadow-navbarShadow z-10 
   }
 
   .req-all {
-    @apply grid grid-cols-[_1fr_1fr_1fr] justify-center h-full bg-defaultLight
+    @apply grid grid-cols-[_1fr_1fr_1fr] justify-center h-full bg-defaultLight rounded-lg
   }
 
   /*~ condition based styles */
@@ -421,25 +211,30 @@ body {
   }
 
   .merge-gradient {
-    @apply bg-mergeBg shadow-reqShadow
+    @apply bg-mergeBg shadow-reqShadow rounded-tr-lg
   }
 
   .push-heading {
-    @apply underline font-semibold text-reqPushHeading
+    @apply font-semibold text-reqPushHeading
   }
 
   .pull-heading {
-    @apply underline font-semibold text-reqPullHeading
+    @apply font-semibold text-reqPullHeading
   }
 
   .merge-heading {
-    @apply underline font-semibold text-reqMergeHeading
+    @apply font-semibold text-reqMergeHeading
   }
 
   /*~---------------------------------------------------------*/
 
+  
   .cols {
-    @apply cursor-pointer mb-4 text-lg hover:font-semibold
+    @apply transition duration-300 ease-in cursor-pointer mb-4 text-lg  hover:font-semibold relative
+  }
+  
+  .span-underline {
+    @apply absolute left-0 bottom-0 w-full h-[1.5px] scale-x-0 bg-defaultDark transition duration-500 origin-center rounded-xl
   }
 
   .center-the-heading {
@@ -459,22 +254,101 @@ body {
   }
 
   .req {
-    @apply hover:font-semibold hover:underline hover:cursor-pointer text-defaultDark
+    @apply hover:cursor-pointer text-defaultDark
   }
 
   .ignored-pull {
-    @apply transition duration-300 btn btn-outline text-base bg-ignoredBorderText hover:bg-ignoredBg hover:text-white hover:border-white border-defaultLight text-defaultLight
+    @apply transition duration-300 btn btn-outline text-base bg-ignoredBorderText hover:bg-ignoredBg hover:text-white hover:border-white text-white border-ignoredBorderText
   }
 
   .interested-pull {
-    @apply transition duration-300 btn btn-outline text-base bg-interestedBorderText hover:bg-interestedBg hover:text-white hover:border-white text-defaultLight border-defaultLight
+    @apply transition duration-300 btn btn-outline text-base bg-interestedBorderText hover:bg-interestedBg hover:text-white hover:border-white text-white border-interestedBorderText
   }
 
   .noReqText {
     @apply text-defaultDark text-center
   }
 
+  /** Show Sent Profile  */
+  .feed-sent-receive {
+    @apply  bg-userCardBg 
+  }
+  .user-card-bg-sent-receive {
+    @apply flex flex-col items-center pt-8 pb-8 bg-userCardBg
+  }
 
+  /** settings */
+
+  .settings {
+    @apply bg-settingsBg h-screen shadow-footerShadow
+  }
+
+  .heading {
+    @apply text-lg font-semibold py-4 hover:cursor-pointer text-defaultDark
+  }
+
+  .individual-heading {
+    @apply pb-4 transition duration-300 hover:cursor-pointer hover:font-semibold text-defaultDark
+  }
+
+  /** Profile */
+  .profile-bg {
+    @apply bg-profileBg shadow-footerShadow
+  }
+
+  .profile-cont {
+    @apply flex flex-col gap-y-6 items-start w-1/2 mx-auto pt-4 pb-8
+  }
+
+  .profile-headings {
+    @apply text-center text-3xl font-semibold self-center text-defaultDark
+  }
+
+  .fieldName {
+    @apply font-medium text-lg text-defaultDark
+  }
+
+  .fieldValue {
+    @apply border px-2 py-1.5 w-full border-defaultDark cursor-default font-normal text-defaultDark
+  }
+
+  /** update profile */
+  .form-parent {
+    @apply  bg-updateBg shadow-footerShadow
+  }
+  .form {
+    @apply flex flex-col gap-y-8 items-start w-1/3 mx-auto
+  }
+
+  .separators {
+    @apply w-full flex flex-col gap-y-2
+  }
+
+  .passwordInput {
+    @apply w-full bg-signupInputBg border border-white py-1.5 px-2 transition duration-200 hover:shadow-singupInputHover rounded-[4px] hover:border-defaultDark
+  }
+
+  .label {
+    @apply text-lg font-medium inline-block text-defaultDark
+  }
+
+  /** Update */
+  .update {
+    @apply bg-defaultLight 
+  }
+  .update-btns {
+    @apply btn btn-outline self-center text-base mb-8 transition duration-300 bg-btnBg hover:bg-btnHover border border-btnBg hover:border-btnHover shadow-singupInputHover hover:shadow-reqShadow text-defaultDark
+  }
+
+  /** Loading */
+  .loading-data {
+    @apply text-2xl font-semibold text-white
+  }
+
+  /** Success Msg */
+  .success {
+    @apply text-xl font-semibold text-successColor
+  }
 
   /** error */
   .outer-error {
@@ -501,21 +375,8 @@ body {
     @apply font-medium text-[1.1rem] pb-4 text-errorText
   }
 
-  /** Loading */
-  .loading-data {
-    @apply text-2xl font-semibold text-white
-  }
-
   /** img */
   .img {
     @apply h-24 w-24 rounded-full object-cover
   }
-
-
-
-
-
-
-
-
 }
