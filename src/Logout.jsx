@@ -1,10 +1,10 @@
-export default function Logout({cancel, logout}) {
+export default function Logout({cancel, logout, heading, warning}) {
     return (
     <div className="outer-logout">
       <div className="inner-logout">
-        <h1 className="logout-heading">Logout</h1>
+        <h1 className="logout-heading">{heading}</h1>
         <div className="logout-func">
-          <p className="warning-logout">Are you sure you want to Logout?</p>
+          <p className="warning-logout">{warning}</p>
           <div className="outer-btns">
             <div className="btns">
               <button className="btn cancel-btn" onClick={cancel}>
