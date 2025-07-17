@@ -2,6 +2,157 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-    --pink : pink;
+:root {
+  --defaultLight: white;
+  --defaultDark: black;
+
+  --req-shadow: rgba(0, 30, 43, 0.3) 0px 10px 10px -4px;
+  --profile-picture-shadow : rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+  /** index  */
+  --index-devTinder-heading: white;
+  --index-button-bg-color: white;
+  --index-button-bg-hover: white;
+  --index-button-text-color: black;
+
+  /** Footer  */
+  --footer-bg: white;
+  --footer-heading: black;
+  --footer-content: black;
+  --footer-shadow : rgba(0, 30, 43, 0.3) -3px -4px 9px -5px;
+
+  /** Signup */
+  --signup-bg-color: radial-gradient(circle at center, #d0c3ff 40%, #efecffcf 40%, #cdbfff 80%);
+  --signup-cont-color: transparent;
+  --input-box-hover-border: #b81eff;
+  --signup-button: #ae5ff9;
+  --signup-button-hover: #7635b2;
+  --signup-input-bg: rgba(255, 255, 255, 0.6);
+  --signup-input-shadow: rgba(21, 0, 43, 0.3) 0px 4px 6px -4px;
+  --signup-input-hover: rgba(21, 0, 43, 0.3) 0px 5px 5px -4px;
+
+
+  /** Feed */
+  --feed-userCard-bg: linear-gradient(to bottom, #d8dbff);
+  --feed-userCars-boxShadow:
+    rgba(0, 30, 43, 0.3) 5px 5px 10px -4px;
+  --feed-interested-border-text-color: #008800;
+  --feed-ignored-border-text-color: #db0000;
+  --feed-interested-bg-hover: #006c00;
+  --feed-ignored-bg-hover: #9e0000;
+
+  /** Requests */
+  --req-push-bg: #cdfcff;
+  --req-pull-bg: #c7ffe3;
+  --req-merge-bg: #fcd6ff;
+  --req-push-text-heading: rgb(0, 134, 147);
+  --req-pull-text-heading: rgb(0, 165, 0);
+  --req-merge-text-heading: rgb(190, 4, 113);
+
+  /** Logout */
+  --logout-box-bg: white;
+  --cancel-bg: rgb(207, 207, 207);
+  --cancel-hover: darkGray;
+  --logout-bg: rgb(177, 0, 0);
+  --logout-hover: darkRed;
+
+  /** Navbar */
+  --logout-navbar-color: #760398;
+  --logout-navbar-hover: #590074;
+  --navbar-color: #f4f4f473;
+  --navbar-shadow: rgba(0, 30, 43, 0.3) 3px 4px 9px -5px;
+
+
+  /** Error */
+  --error-text: red;
+  --error-box-shadow: rgba(43, 0, 34, 0.3) 0px 10px 10px 4px;
+
+  /** Profile */
+  --profile-bg: linear-gradient(to bottom, white 10%, #fec4c4 80%);
+
+  /** Settings */
+  --settings-bg: #d1fdff;
+
+  /** Update */
+  --update-bg: linear-gradient(to right, #beffdf, #fff, #beffdf);
+  --update-btn-bg: #10ffa7;
+  --update-btn-hover: #00e792;
+
+  /** Success */
+  --success-text: #003c08;
+
+
+
+}
+
+.dark {
+  --defaultLight: black;
+  --defaultDark: white;
+
+  /*& index  */
+  --index-devTinder-heading: white;
+  --index-button-bg-color: #121212;
+  --index-button-bg-hover: black;
+  --index-button-text-color: white;
+
+  /*& Footer  */
+  --footer-bg: black;
+  --footer-heading: white;
+  --footer-content: white;
+
+  /*& Signup */
+  --signup-bg-color: radial-gradient(circle farthest-side, black 30%, #39003f);
+  --signup-bg-color: radial-gradient(circle at center, #2b002f 40%, #000 10%, #300036);
+  --signup-cont-color: transparent;
+  --input-box-hover-border: white;
+  --signup-button: #ebc1ff;
+  --signup-button-hover: #e2a2ff;
+  --signup-input-bg: #d0d0d0;
+  --signup-input-hover: rgb(235, 193, 255) 0px 5px 0px -4px;
+  ;
+
+  /*& Feed */
+  --feed-userCard-bg: linear-gradient(to bottom, black, #3e005a);
+  --feed-userCars-boxShadow:
+    rgba(39, 0, 43, 0.806) 5px 15px 10px -4px;
+  --feed-interested-border-text-color: #00ac00;
+  --feed-ignored-border-text-color: #e30000;
+  --feed-interested-bg-hover: #007800;
+  --feed-ignored-bg-hover: #a30000;
+
+  /*& Requests */
+  --req-push-bg: #00003d;
+  --req-pull-bg: #002c00;
+  --req-merge-bg: #46002e;
+  --req-push-text-heading: rgb(37, 186, 255);
+  --req-pull-text-heading: rgb(142, 255, 142);
+  --req-merge-text-heading: rgb(255, 191, 248);
+
+  /*& Logout */
+  --logout-box-bg: #000;
+
+  /*& Navbar */
+  --logout-navbar-color: #ebc1ff;
+  --logout-navbar-hover: #e2a2ff;
+  --navbar-color: rgb(23, 23, 23);
+  --navbar-shadow: rgb(0, 0, 0) 3px 6px 10px -5px;
+
+
+  /*& Error */
+  --error-text: rgb(255, 38, 38);
+  --error-box-shadow: rgba(43, 0, 34, 0.133) 0px 10px 10px 4px;
+
+  /*& Profile */
+  --profile-bg: linear-gradient(to bottom, black 10%, #420000 90%);
+
+  /*& Settings */
+  --settings-bg: #001a2e;
+
+  /*& Update */
+  --update-bg: linear-gradient(to right, #002705, #000, #002705);
+  --update-btn-bg: rgb(0, 142, 47);
+  --update-btn-hover: rgb(0, 106, 0);
+
+  /*& Success */
+  --success-text: #4dffbe;
 }
